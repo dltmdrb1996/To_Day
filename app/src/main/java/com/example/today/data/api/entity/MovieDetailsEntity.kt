@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.today.data_repository.api.entity
+package com.example.today.data.api.entity
 
 import com.fernandocejas.sample.core.extension.empty
 

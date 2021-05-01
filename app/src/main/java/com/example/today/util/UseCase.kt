@@ -13,10 +13,8 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.today.data_repository.temp
+package com.example.today.util
 
-import com.fernandocejas.sample.core.exception.Failure
-import com.fernandocejas.sample.core.functional.Either
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
 import kotlinx.coroutines.async

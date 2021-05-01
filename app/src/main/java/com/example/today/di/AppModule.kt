@@ -7,15 +7,13 @@ import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
+import retrofit2.Retrofit
 import javax.inject.Singleton
 
 @InstallIn(SingletonComponent::class)
 @Module
 object AppModule {
 
-    @Provides
-    @Singleton
-    fun provideApplicationContext(): Context = application
 
     @Provides
     @Singleton
@@ -30,6 +28,8 @@ object AppModule {
     @Singleton
     @Provides
     fun provideIoDispatcher() = Dispatchers.IO
+
+
 }
 
 
@@ -37,15 +37,5 @@ object AppModule {
 @InstallIn(SingletonComponent::class)
 object RepositoryModule {
 
-    @Singleton
-    @Provides
-    fun provideTasksRepository(
-        @AppModule.RemoteTasksDataSource remoteTasksDataSource: TasksDataSource,
-        @AppModule.LocalTasksDataSource localTasksDataSource: TasksDataSource,
-        ioDispatcher: CoroutineDispatcher
-    ): TasksRepository {
-        return DefaultTasksRepository(
-            remoteTasksDataSource, localTasksDataSource, ioDispatcher
-        )
-    }
+
 }

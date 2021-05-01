@@ -13,7 +13,7 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.example.today.data_repository.api
+package com.example.today.data.api
 
 import retrofit2.Retrofit
 import javax.inject.Inject
