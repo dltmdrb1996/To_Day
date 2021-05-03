@@ -15,20 +15,11 @@ import javax.inject.Singleton
 object AppModule {
 
 
-    @Provides
-    @Singleton
-    fun provideRetrofit(): Retrofit {
-        return Retrofit.Builder()
-            .baseUrl("https://raw.githubusercontent.com/android10/Sample-Data/master/Android-CleanArchitecture-Kotlin/")
-            .client(createClient())
-            .addConverterFactory(GsonConverterFactory.create())
-            .build()
-    }
+
 
     @Singleton
     @Provides
     fun provideIoDispatcher() = Dispatchers.IO
-
 
 }
 
