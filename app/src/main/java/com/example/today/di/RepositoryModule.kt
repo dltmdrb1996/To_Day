@@ -1,7 +1,7 @@
-package com.roh.idus.localweather.di
+package com.example.today.di
 
 import com.example.today.data.api.repository.WeatherRepositoryImpl
-import com.roh.idus.localweather.domain.repository.WeatherRepository
+import com.example.today.domain.repository.WeatherRepository
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn

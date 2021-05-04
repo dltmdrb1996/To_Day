@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">today</string>
+
+    <string name="default_error_message">An error has occurred.</string>
+    <string name="http_requst_fail_error_message">Please try again in a few minutes.</string>
+    <string name="null_response_body_error_message">request has failed.</string>
 </resources>

@@ -1,9 +1,9 @@
 package com.example.today.data.api.datasource
 import com.example.today.data.api.model.LocationWeatherDTO
 import com.example.today.data.api.network.WeatherServiceApi
+import com.example.today.di.IOScheduler
 import com.example.today.util.error.HttpRequestFailException
 import com.example.today.util.error.NullResponseBodyException
-import com.roh.idus.localweather.di.IOScheduler
 import io.reactivex.Observable
 import io.reactivex.Scheduler
 import javax.inject.Inject

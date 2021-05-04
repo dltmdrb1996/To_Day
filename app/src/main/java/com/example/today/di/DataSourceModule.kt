@@ -1,4 +1,4 @@
-package com.roh.idus.localweather.di
+package com.example.today.di
 
 import com.example.today.data.api.datasource.WeatherDataSource
 import com.example.today.data.api.datasource.WeatherRemoteDataSource
