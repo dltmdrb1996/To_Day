@@ -7,4 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+
+    <color name="toolbar_title">@color/black</color>
+
+    <color name="list_item_header_background">#fafafa</color>
+    <color name="item_background_line">#e1e1e1</color>
+
+    <color name="temp_degree">#FFFF0000</color>
+    <color name="temp_degree_below_zero">#FF0000FF</color>
 </resources>

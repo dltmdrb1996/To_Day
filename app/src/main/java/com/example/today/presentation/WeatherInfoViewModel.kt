@@ -7,7 +7,6 @@ import com.example.today.domain.model.Weather
 class WeatherInfoViewModel constructor(
     private val locationWeather: LocationWeather
 ) {
-//    viewModel = WeatherInfoViewModel(item) 어댑터에 있어야될 코드
     private val weathers = locationWeather.weathers
 
     private val defaultWeather = Weather (

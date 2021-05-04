@@ -15,7 +15,7 @@ import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
-@HiltViewModel
+
 class HomeFragViewModel @Inject constructor(
     private val searchLocationWeathersUseCase: SearchLocationWeathersUseCase,
     @MainScheduler private val scheduler: Scheduler,
