@@ -19,7 +19,7 @@ import javax.inject.Inject
 class HomeFragViewModel @Inject constructor(
     private val searchLocationWeathersUseCase: SearchLocationWeathersUseCase,
     @MainScheduler private val scheduler: Scheduler,
-    private val disposable: CompositeDisposable
+    private val disposable : CompositeDisposable
 ) : ViewModel() {
 
     companion object {

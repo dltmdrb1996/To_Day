@@ -4,13 +4,14 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.example.today.R
+import com.example.today.databinding.AdapterListBinding
 
 class RecyclerViewAdapter(var items: ArrayList<String> = arrayListOf()) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
-
+    private val binding : AdapterListBinding
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return RecyclerView.ViewHolder(
             LayoutInflater.from(parent.context)
-                .inflate(R.layout.list_item, parent, false)
+                .inflate(R.layout., parent, false)
         )
     }
 
