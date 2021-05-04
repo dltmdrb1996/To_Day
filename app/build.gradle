@@ -91,4 +91,8 @@ dependencies {
     implementation "io.reactivex.rxjava2:rxandroid:$rxVersion"
     implementation "io.reactivex.rxjava2:rxjava:$rxVersion"
 
+
+    //viewPager2
+    implementation "androidx.viewpager2:viewpager2:1.0.0"
+
 }
