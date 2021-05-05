@@ -15,11 +15,11 @@ import io.reactivex.Scheduler
 import io.reactivex.disposables.CompositeDisposable
 import javax.inject.Inject
 
-
+@HiltViewModel
 class HomeFragViewModel @Inject constructor(
     private val searchLocationWeathersUseCase: SearchLocationWeathersUseCase,
     @MainScheduler private val scheduler: Scheduler,
-    private val disposable : CompositeDisposable
+    private val disposable: CompositeDisposable
 ) : ViewModel() {
 
     companion object {
@@ -59,14 +59,14 @@ class HomeFragViewModel @Inject constructor(
         _search.value?.let { search ->
             _dataLoading.value = true
             disposable.add(
-                    searchLocationWeathersUseCase(search).observeOn(scheduler).doFinally {
-                        _dataLoading.value = false
-                    }.subscribe({
-                        _locationWeathers.value = it
-                    }, { error ->
-                        Log.e(TAG, "Failure to get Weather", error)
-                        processError(error)
-                    })
+                searchLocationWeathersUseCase(search).observeOn(scheduler).doFinally {
+                    _dataLoading.value = false
+                }.subscribe({
+                    _locationWeathers.value = it
+                }, { error ->
+                    Log.e(TAG, "Failure to get Weather", error)
+                    processError(error)
+                })
             )
         }
     }

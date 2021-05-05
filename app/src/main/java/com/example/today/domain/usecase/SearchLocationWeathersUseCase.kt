@@ -7,7 +7,7 @@ import io.reactivex.Single
 import javax.inject.Inject
 
 class SearchLocationWeathersUseCase @Inject constructor(
-    private val weatherRepository: WeatherRepository,
+    private val weatherRepository: WeatherRepository
 ) {
     operator fun invoke(search: String): Single<List<LocationWeather>> {
         return weatherRepository.getLocations(search).flatMapIterable { it }.concatMapEager { location ->

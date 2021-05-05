@@ -9,9 +9,12 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.viewModels
+import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
+import androidx.lifecycle.ViewModelProvider
 import com.example.today.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
+import kotlin.Result.Companion.failure
 
 @AndroidEntryPoint
 class HomeFragment : Fragment() {
@@ -26,12 +29,13 @@ class HomeFragment : Fragment() {
         val binding = FragmentHomeBinding.inflate(inflater, container, false)
         binding.apply {
             lifecycleOwner = this@HomeFragment
-            viewModel =this@HomeFragment.viewModel
-            adapter =this@HomeFragment.adapter
+            viewModel = this@HomeFragment.viewModel
+            adapter = this@HomeFragment.adapter
         }
-        subscribeUI()
-        viewModel.search("se")
 
+        subscribeUI()
+
+        viewModel.search("se")
         return binding.root
     }
 
@@ -40,4 +44,5 @@ class HomeFragment : Fragment() {
             Toast.makeText(activity, getString(stringId), Toast.LENGTH_SHORT).show()
         }
     }
+
 }

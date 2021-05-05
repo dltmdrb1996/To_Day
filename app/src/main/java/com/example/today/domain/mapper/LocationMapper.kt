@@ -8,12 +8,12 @@ import javax.inject.Singleton
 @Singleton
 class LocationMapper @Inject constructor() {
     fun transform(locationDTO: LocationDTO): Location =
-            with(locationDTO) {
-                Location(
-                        id = id,
-                        title = title,
-                        locationType = locationType,
-                        lattLong = lattLong
-                )
-            }
+        with(locationDTO) {
+            Location(
+                id = id,
+                title = title,
+                locationType = locationType,
+                lattLong = lattLong
+            )
+        }
 }

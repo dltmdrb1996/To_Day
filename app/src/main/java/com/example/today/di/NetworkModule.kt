@@ -1,5 +1,6 @@
 package com.example.today.di
 
+import com.example.today.BuildConfig
 import com.example.today.data.api.network.WeatherServiceApi
 import dagger.Module
 import dagger.Provides
@@ -14,7 +15,6 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 class NetworkModule {
-    private val baseUrl = "https://www.metaweather.com"
 
     @Singleton
     @Provides
@@ -26,7 +26,7 @@ class NetworkModule {
     @Provides
     fun providesBucketPlaceRetrofit(okHttpClient: OkHttpClient): Retrofit {
         return Retrofit.Builder().client(okHttpClient)
-            .baseUrl(baseUrl + "api/")
+            .baseUrl("https://www.metaweather.com/" + "api/")
             .addConverterFactory(GsonConverterFactory.create())
             .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()

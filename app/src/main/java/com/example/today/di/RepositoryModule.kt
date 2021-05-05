@@ -17,3 +17,4 @@ interface RepositoryModule {
     fun bindWeatherRepository(impl: WeatherRepositoryImpl): WeatherRepository
 
 }
+

@@ -2,6 +2,7 @@ package com.example.today.di
 
 import com.example.today.data.api.datasource.WeatherDataSource
 import com.example.today.data.api.datasource.WeatherRemoteDataSource
+import com.example.today.domain.usecase.SearchLocationWeathersUseCase
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -15,5 +16,6 @@ interface DataSourceModule {
     @Singleton
     @Binds
     fun bindWeatherServerDataSource(impl: WeatherRemoteDataSource): WeatherDataSource
+
 
 }

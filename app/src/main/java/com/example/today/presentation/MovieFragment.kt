@@ -24,7 +24,6 @@ class MovieFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val navControler = Navigation.findNavController(view)
 
     }
 

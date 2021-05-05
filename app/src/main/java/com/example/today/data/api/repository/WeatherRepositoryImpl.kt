@@ -15,14 +15,7 @@ class WeatherRepositoryImpl @Inject constructor(
     private val weatherDataSource: WeatherDataSource,
     private val locationWeatherMapper: LocationWeatherMapper,
     private val locationMapper: LocationMapper
-) : WeatherRepository, Parcelable {
-
-    constructor(parcel: Parcel) : this(
-        TODO("weatherDataSource"),
-        TODO("locationWeatherMapper"),
-        TODO("locationMapper")
-    ) {
-    }
+) : WeatherRepository {
 
     override fun getLocations(search: String): Observable<List<Location>> {
         return weatherDataSource.getLocations(search).map {
@@ -33,24 +26,6 @@ class WeatherRepositoryImpl @Inject constructor(
     override fun getLocationWeather(id: Long): Observable<LocationWeather> {
         return weatherDataSource.getLocationWeather(id).map {
             locationWeatherMapper.transform(it)
-        }
-    }
-
-    override fun writeToParcel(parcel: Parcel, flags: Int) {
-
-    }
-
-    override fun describeContents(): Int {
-        return 0
-    }
-
-    companion object CREATOR : Parcelable.Creator<WeatherRepositoryImpl> {
-        override fun createFromParcel(parcel: Parcel): WeatherRepositoryImpl {
-            return WeatherRepositoryImpl(parcel)
-        }
-
-        override fun newArray(size: Int): Array<WeatherRepositoryImpl?> {
-            return arrayOfNulls(size)
         }
     }
 }
