@@ -2,21 +2,24 @@ package com.example.today.presentation.homeFrag
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.example.today.databinding.AdapterListBinding
 import com.example.today.domain.model.LocationWeather
 
 
 class WeatherInfoAdapter : RecyclerView.Adapter<WeatherInfoAdapter.WeatherInfoViewHolder>() {
 
-    private var items: List<DataItem> = emptyList()
+    private var items: List<weatherInfoItem> = emptyList()
 
     fun addHeaderAndSumbitList(list: List<LocationWeather>) {
-        val itemList: MutableList<DataItem> = mutableListOf()
+        val itemList: MutableList<weatherInfoItem> = mutableListOf()
 
         if (!list.isEmpty()) {
             for (i in list) {
-                itemList.add(DataItem.weatherInfoItem(i))
+                itemList.add(weatherInfoItem(i))
             }
         }
         this.items = itemList
@@ -48,17 +51,23 @@ class WeatherInfoAdapter : RecyclerView.Adapter<WeatherInfoAdapter.WeatherInfoVi
 
 
     override fun getItemCount(): Int {
-        return items.count()
+        return if (items.size > 0) {
+            Int.MAX_VALUE
+        } else {
+            0
+        }
     }
 
-    sealed class DataItem {
-        data class weatherInfoItem(val locationWeather: LocationWeather) : DataItem()
-    }
+
+    data class weatherInfoItem(val locationWeather: LocationWeather)
+
 
     override fun onBindViewHolder(holder: WeatherInfoViewHolder, position: Int) {
-        val weatherInfoItem = items[position] as DataItem.weatherInfoItem
+
+        val weatherInfoItem = items[position % 12]
         holder.bind(weatherInfoItem.locationWeather)
 
     }
 
 }
+

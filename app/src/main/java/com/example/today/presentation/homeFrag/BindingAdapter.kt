@@ -26,3 +26,4 @@ fun bindAdapterPokemonList(view: ViewPager2, list: List<LocationWeather>?) {
         }
     }
 }
+

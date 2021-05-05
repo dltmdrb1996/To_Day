@@ -21,18 +21,24 @@
         android:orientation="vertical"
         android:weightSum="1"
         tools:context=".presentation.homeFrag.HomeFragment">
+        <com.example.today.presentation.homeFrag.CustomSwipeRefreshLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.15"
+            app:onRefreshListener="@{() -> viewModel.refresh()}"
+            app:refreshing="@{viewModel.dataLoading}">
 
         <androidx.viewpager2.widget.ViewPager2
             android:layout_margin="10dp"
             android:layout_gravity="center"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="0.15"
+            android:layout_height="match_parent"
             app:adapter="@{adapter}"
             app:adapterWeatherInfoList="@{viewModel.locationWeathers}"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             />>
 
+        </com.example.today.presentation.homeFrag.CustomSwipeRefreshLayout>
 
         <TextView
             android:layout_width="match_parent"
