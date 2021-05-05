@@ -1,4 +1,4 @@
-package com.example.today.presentation
+package com.example.today.presentation.homeFrag
 
 import com.example.today.domain.model.LocationWeather
 import com.example.today.domain.model.Weather

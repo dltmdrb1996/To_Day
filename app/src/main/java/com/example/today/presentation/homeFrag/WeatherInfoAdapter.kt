@@ -1,4 +1,4 @@
-package com.example.today.presentation
+package com.example.today.presentation.homeFrag
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
@@ -7,7 +7,7 @@ import com.example.today.databinding.AdapterListBinding
 import com.example.today.domain.model.LocationWeather
 
 
-class WeatherInfoAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class WeatherInfoAdapter : RecyclerView.Adapter<WeatherInfoAdapter.WeatherInfoViewHolder>() {
 
     private var items: List<DataItem> = emptyList()
 
@@ -42,28 +42,23 @@ class WeatherInfoAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     }
 
 
-
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): WeatherInfoViewHolder {
         return WeatherInfoViewHolder.from(parent)
     }
-
 
 
     override fun getItemCount(): Int {
         return items.count()
     }
 
-    override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-        when (holder) {
-            is WeatherInfoViewHolder -> {
-                val weatherInfoItem = items[position] as DataItem.weatherInfoItem
-                holder.bind(weatherInfoItem.locationWeather)
-            }
-        }
-    }
-
     sealed class DataItem {
         data class weatherInfoItem(val locationWeather: LocationWeather) : DataItem()
+    }
+
+    override fun onBindViewHolder(holder: WeatherInfoViewHolder, position: Int) {
+        val weatherInfoItem = items[position] as DataItem.weatherInfoItem
+        holder.bind(weatherInfoItem.locationWeather)
+
     }
 
 }
