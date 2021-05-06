@@ -64,7 +64,7 @@ class WeatherInfoAdapter : RecyclerView.Adapter<WeatherInfoAdapter.WeatherInfoVi
 
     override fun onBindViewHolder(holder: WeatherInfoViewHolder, position: Int) {
 
-        val weatherInfoItem = items[position % 12]
+        val weatherInfoItem = items[position % items.count()]
         holder.bind(weatherInfoItem.locationWeather)
 
     }

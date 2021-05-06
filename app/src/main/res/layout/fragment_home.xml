@@ -12,7 +12,6 @@
         <variable
             name="adapter"
             type="com.example.today.presentation.homeFrag.WeatherInfoAdapter" />
-
     </data>
 
     <LinearLayout
@@ -21,30 +20,80 @@
         android:orientation="vertical"
         android:weightSum="1"
         tools:context=".presentation.homeFrag.HomeFragment">
+
         <com.example.today.presentation.homeFrag.CustomSwipeRefreshLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:layout_margin="15dp"
             android:layout_weight="0.15"
             app:onRefreshListener="@{() -> viewModel.refresh()}"
             app:refreshing="@{viewModel.dataLoading}">
 
-        <androidx.viewpager2.widget.ViewPager2
-            android:layout_margin="10dp"
-            android:layout_gravity="center"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            app:adapter="@{adapter}"
-            app:adapterWeatherInfoList="@{viewModel.locationWeathers}"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            />>
+            <androidx.viewpager2.widget.ViewPager2
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                app:adapter="@{adapter}"
+                app:adapterWeatherInfoList="@{viewModel.locationWeathers}"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />>
 
         </com.example.today.presentation.homeFrag.CustomSwipeRefreshLayout>
 
-        <TextView
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:text="test"
-            android:layout_weight="0.7" />
+            android:layout_weight="0.85">
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/Home_Frag_Btn_Movie"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/LightGoldenrodYellow"
+                android:text="영화"
+                android:textColor="@color/black"
+                app:cornerRadius="15dp"
+                app:icon="@drawable/ic_baseline_movie_24"
+                app:iconGravity="top"
+                app:iconTint="@color/holo_green_dark"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/Home_frag_Btn_Music"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/Home_frag_Btn_Music"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/LightGoldenrodYellow"
+                android:text="음악"
+                android:textColor="@color/black"
+                app:cornerRadius="15dp"
+                app:icon="@drawable/ic_baseline_music_note_24"
+                app:iconGravity="top"
+                app:iconTint="@color/holo_green_dark"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/Home_Frag_Btn_Eng"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/LightGoldenrodYellow"
+                android:text="영어"
+                android:textColor="@color/black"
+                app:cornerRadius="15dp"
+                app:icon="@drawable/ic_baseline_school_24"
+                app:iconGravity="top"
+                app:iconTint="@color/holo_green_dark"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/Home_frag_Btn_Music"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
 
     </LinearLayout>
 </layout>

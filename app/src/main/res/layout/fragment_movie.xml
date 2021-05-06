@@ -6,13 +6,12 @@
     android:layout_height="match_parent"
     tools:context=".presentation.MovieFragment">
 
-
-
     <Button
         android:id="@+id/movieActionFragment"
         android:layout_centerInParent="true"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="영화프래그먼트"/>
+
 </RelativeLayout>
 </layout>
