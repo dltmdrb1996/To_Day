@@ -25,7 +25,6 @@ class HomeFragment() : Fragment() {
 
     private val viewModel by viewModels<HomeFragViewModel>()
     private val adapter = WeatherInfoAdapter()
-    lateinit var navController : NavController
     lateinit var binding : FragmentHomeBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

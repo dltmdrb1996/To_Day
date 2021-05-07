@@ -13,21 +13,23 @@ class LocalDataSource(
     private val ioDispatcher: CoroutineDispatcher = Dispatchers.IO
 ) {
 
+    lateinit var result : List<Movie>
+
+    suspend fun getAllMovie(): List<Movie> {
+        withContext(ioDispatcher) {
+            val returnedrepo = dbDao.getTasks()
+            result = returnedrepo
+        }
+        return result
+    }
+
+
     fun observerMovie(num: Int) : LiveData<Movie>{
         return dbDao.observeTaskById(num)
     }
 
-//    suspend fun getMovie(num : Int) : Result<Movie> = withContext(ioDispatcher){
-//        try {
-//            val movie = dbDao.getTaskById(num)
-//            if (movie != null) {
-//                return@withContext Result.Success<Movie>
-//            } else {
-//                return@withContext Error(Exception("Task not found!"))
-//            }
-//        } catch (e: Exception) {
-//            return@withContext Error(e)
-//        }
-//    }
+    fun getMovie() : LiveData<List<Movie>>{
+        return dbDao.observeTasks()
+    }
 
 }

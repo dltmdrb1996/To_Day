@@ -21,7 +21,7 @@ class Module {
     @Provides
     fun provideMemoDatabase(@ApplicationContext context: Context) =
         Room.databaseBuilder(context.applicationContext, myDB::class.java, "Sample.db")
-            .createFromAsset("database/Data.db")
+            .createFromAsset("test.db")
             .build()
 
     @Singleton
