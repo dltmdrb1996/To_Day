@@ -1,14 +1,13 @@
 package com.example.today.presentation
 
 import androidx.lifecycle.LiveData
-import com.example.today.data.db.datasource.LocalDataSource
+import androidx.lifecycle.ViewModel
 import com.example.today.data.db.model.Movie
+import dagger.hilt.android.lifecycle.HiltViewModel
+import javax.inject.Inject
 
-class MovieFragViewModel(localDataSource: LocalDataSource) {
+@HiltViewModel
+class MovieFragViewModel @Inject constructor() : ViewModel() {
 
-
-    private val _movie : LiveData<Movie> = localDataSource.observerMovie(1)
-    val movie : LiveData<Movie> = _movie
-
-
+    val test = 5
 }

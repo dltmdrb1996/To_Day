@@ -8,15 +8,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.navigation.NavController
-import androidx.navigation.Navigation
 import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
 import com.example.today.R
-import com.example.today.data.db.datasource.LocalDataSource
-import com.example.today.data.db.model.Movie
 import com.example.today.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,7 +19,6 @@ class HomeFragment() : Fragment() {
 
     private val viewModel by viewModels<HomeFragViewModel>()
     private val adapter = WeatherInfoAdapter()
-    lateinit var navController : NavController
     lateinit var binding : FragmentHomeBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,6 +42,10 @@ class HomeFragment() : Fragment() {
         binding.HomeFragBtnMovie.setOnClickListener {
             view.findNavController().navigate(R.id.movieFragment)
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
     }
 
     private fun subscribeUI() {
