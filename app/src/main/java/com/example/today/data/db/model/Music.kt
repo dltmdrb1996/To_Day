@@ -12,23 +12,23 @@ import kotlinx.parcelize.Parcelize
 @Parcelize
 data class Music(
     val title: String, //Document ID is actually the user id
-    val director: String,
-    val actor: String,
-    val script: String,
-    val time : String) : Parcelable {
+    val singer: String,
+    val cast: String,
+    val script : String,
+    val url : String) : Parcelable {
 
     companion object {
         fun DocumentSnapshot.toMusic(): Music? {
-            try {
+            return try {
                 val title = getString("title")!!
-                val director = getString("director")!!
-                val actor = getString("actor")!!
+                val singer = getString("singer")!!
+                val cast = getString("cast")!!
                 val script = getString("script")!!
-                val time = getString("time")!!
-                return Music(title, director, actor, script,time)
+                val url = getString("url")!!
+                Music(title, singer, cast, script,url)
             } catch (e: Exception) {
                 Log.e(TAG, "Error converting user profile", e)
-                return null
+                null
             }
         }
         private const val TAG = "Music"

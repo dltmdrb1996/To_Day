@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example.today.data.db
+package com.example.today.util
 
 
 /**

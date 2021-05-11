@@ -5,7 +5,6 @@
     tools:context=".view.WeatherInfoView">
 
     <data>
-
         <variable
             name="weather"
             type="com.example.today.domain.model.Weather" />

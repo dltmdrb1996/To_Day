@@ -9,6 +9,7 @@ import kotlinx.parcelize.Parcelize
 data class Movie(
     val title: String, //Document ID is actually the user id
     val director: String,
+    val img : String,
     val actor: String,
     val script: String,
     val time : String) : Parcelable {
@@ -18,10 +19,11 @@ data class Movie(
             try {
                 val title = getString("title")!!
                 val director = getString("director")!!
+                val img = getString("img")!!
                 val actor = getString("actor")!!
                 val script = getString("script")!!
                 val time = getString("time")!!
-                return Movie(title, director, actor, script,time)
+                return Movie(title, director, img, actor, script, time)
             } catch (e: Exception) {
                 Log.e(TAG, "Error converting user profile", e)
                 return null

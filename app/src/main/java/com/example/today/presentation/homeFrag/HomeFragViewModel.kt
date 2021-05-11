@@ -4,6 +4,7 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.findNavController
 import com.example.today.R
 import com.example.today.di.MainScheduler
 import com.example.today.domain.model.LocationWeather
@@ -86,4 +87,6 @@ class HomeFragViewModel @Inject constructor(
         super.onCleared()
         disposable.clear()
     }
+
+
 }

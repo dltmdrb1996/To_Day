@@ -13,6 +13,12 @@
         <action
             android:id="@+id/action_homeFragment_to_movieFragment"
             app:destination="@id/movieFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_engFragment"
+            app:destination="@id/engFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_musicFragment"
+            app:destination="@id/musicFragment" />
     </fragment>
     <fragment
         android:id="@+id/movieFragment"
@@ -25,5 +31,10 @@
         android:name="com.example.today.presentation.MusicFragment"
         android:label="MusicFragment"
         tools:layout="@layout/fragment_music" />
+    <fragment
+        android:id="@+id/engFragment"
+        android:name="com.example.today.presentation.EngFragment"
+        android:label="fragment_eng"
+        tools:layout="@layout/fragment_eng" />
 
 </navigation>

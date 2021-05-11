@@ -10,21 +10,19 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class Eng(
-    val title: String, //Document ID is actually the user id
-    val director: String,
-    val actor: String,
-    val script: String,
-    val time : String) : Parcelable {
+    val img: String, //Document ID is actually the user id
+    val person: String,
+    val eng: String,
+    val kor : String) : Parcelable {
 
     companion object {
-        fun DocumentSnapshot.toMovie(): Eng? {
+        fun DocumentSnapshot.toEng(): Eng? {
             try {
-                val title = getString("title")!!
-                val director = getString("director")!!
-                val actor = getString("actor")!!
-                val script = getString("script")!!
-                val time = getString("time")!!
-                return Eng(title, director, actor, script,time)
+                val eng = getString("eng")!!
+                val kor = getString("kor")!!
+                val img = getString("img")!!
+                val person = getString("person")!!
+                return Eng(img, person, eng, kor)
             } catch (e: Exception) {
                 Log.e(TAG, "Error converting user profile", e)
                 return null

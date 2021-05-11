@@ -39,13 +39,16 @@ class HomeFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         binding.HomeFragBtnMovie.setOnClickListener {
             view.findNavController().navigate(R.id.movieFragment)
         }
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
+        binding.HomeFragBtnMusic.setOnClickListener {
+            view.findNavController().navigate(R.id.musicFragment)
+        }
+        binding.HomeFragBtnEng.setOnClickListener {
+            view.findNavController().navigate(R.id.engFragment)
+        }
     }
 
     private fun subscribeUI() {
