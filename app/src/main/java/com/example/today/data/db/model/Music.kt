@@ -1,17 +1,36 @@
 package com.example.today.data.db.model
 
+import android.os.Parcelable
+import android.util.Log
 import androidx.room.ColumnInfo
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import com.google.firebase.firestore.DocumentSnapshot
+import kotlinx.parcelize.Parcelize
 
-@Entity
+
+@Parcelize
 data class Music(
-    @PrimaryKey @ColumnInfo(name = "num") var num: Int,
-    @ColumnInfo(name = "title") var title: String,
-    @ColumnInfo(name = "singer") var singer: String,
-    @ColumnInfo(name = "songwriter") var songwriter: String,
-    @ColumnInfo(name = "words") var words: String,
-    @ColumnInfo(name = "youtube") var youtube: String
-) {
+    val title: String, //Document ID is actually the user id
+    val director: String,
+    val actor: String,
+    val script: String,
+    val time : String) : Parcelable {
 
+    companion object {
+        fun DocumentSnapshot.toMusic(): Music? {
+            try {
+                val title = getString("title")!!
+                val director = getString("director")!!
+                val actor = getString("actor")!!
+                val script = getString("script")!!
+                val time = getString("time")!!
+                return Music(title, director, actor, script,time)
+            } catch (e: Exception) {
+                Log.e(TAG, "Error converting user profile", e)
+                return null
+            }
+        }
+        private const val TAG = "Music"
+    }
 }

@@ -13,26 +13,28 @@ import com.example.today.presentation.homeFrag.HomeFragViewModel
 
 class MovieFragment : Fragment() {
 
-    private var mBinding : FragmentMovieBinding? = null
+    lateinit var binding: FragmentMovieBinding
     private val viewModel by viewModels<MovieFragViewModel>()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        binding = FragmentMovieBinding.inflate(inflater, container, false)
+        binding.apply {
+            lifecycleOwner = this@MovieFragment
+            viewModel = this@MovieFragment.viewModel
+        }
 
-        val binding = FragmentMovieBinding.inflate(inflater, container, false)
-        mBinding = binding
-        return mBinding?.root
+        return binding?.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+
         super.onViewCreated(view, savedInstanceState)
-        Log.e("test",viewModel.test.toString())
     }
 
-    override fun onDestroyView() {
-        mBinding = null
-        super.onDestroyView()
-    }
+
+
+
 }
