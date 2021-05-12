@@ -16,10 +16,4 @@ interface DataSourceModule {
     @Binds
     fun bindWeatherServerDataSource(impl: WeatherRemoteDataSource): WeatherDataSource
 
-
-
-
-
-
-
 }

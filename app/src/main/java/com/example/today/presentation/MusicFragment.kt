@@ -7,31 +7,26 @@ import android.view.ViewGroup
 import androidx.annotation.NonNull
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.bumptech.glide.Glide
+import com.example.today.databinding.FragmentHomeBinding
 import com.example.today.databinding.FragmentMusicBinding
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 
 
 class MusicFragment : Fragment() {
-
-    lateinit var binding: FragmentMusicBinding
+    private var _binding: FragmentMusicBinding? = null
+    private val binding get() = _binding!!
     private val viewModel by viewModels<MusicFragViewModel>()
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-
-        binding = FragmentMusicBinding.inflate(inflater, container, false)
-        binding.apply {
-            lifecycleOwner = this@MusicFragment
+        _binding = FragmentMusicBinding.inflate(inflater, container, false)
+        _binding?.apply {
+            lifecycleOwner = viewLifecycleOwner
             viewModel = this@MusicFragment.viewModel
         }
-        return binding?.root
-
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
 
         viewModel.music.observe(viewLifecycleOwner,{
             binding.youtubePlayerView.addYouTubePlayerListener(object :
@@ -42,5 +37,12 @@ class MusicFragment : Fragment() {
                 }
             })
         })
+        return binding.root
+    }
+
+    override fun onDestroyView() {
+        getContext()?.let { Glide.get(it).clearMemory() }
+        _binding = null
+        super.onDestroyView()
     }
 }

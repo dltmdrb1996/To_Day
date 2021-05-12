@@ -12,13 +12,25 @@
         tools:layout="@layout/fragment_home">
         <action
             android:id="@+id/action_homeFragment_to_movieFragment"
-            app:destination="@id/movieFragment" />
+            app:destination="@id/movieFragment"
+            app:enterAnim="@anim/drawer"
+            app:exitAnim="@anim/drawerout"
+            app:popEnterAnim="@anim/drawer"
+            app:popExitAnim="@anim/drawerout" />
         <action
             android:id="@+id/action_homeFragment_to_engFragment"
-            app:destination="@id/engFragment" />
+            app:destination="@id/engFragment"
+            app:enterAnim="@anim/drawer"
+            app:exitAnim="@anim/drawerout"
+            app:popEnterAnim="@anim/drawer"
+            app:popExitAnim="@anim/drawerout" />
         <action
             android:id="@+id/action_homeFragment_to_musicFragment"
-            app:destination="@id/musicFragment" />
+            app:destination="@id/musicFragment"
+            app:enterAnim="@anim/drawer"
+            app:exitAnim="@anim/drawerout"
+            app:popEnterAnim="@anim/drawer"
+            app:popExitAnim="@anim/drawerout" />
     </fragment>
     <fragment
         android:id="@+id/movieFragment"

@@ -42,7 +42,6 @@ android {
 dependencies {
     def room_version = "2.3.0"
     def lifecycle_version = "2.3.0"
-    def nav_version = "2.3.5"
     def retrofitVersion = "2.9.0"
     def gsonVersion = "2.8.6"
     def rxVersion = "2.1.1"

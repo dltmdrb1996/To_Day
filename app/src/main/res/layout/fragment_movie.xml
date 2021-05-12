@@ -37,7 +37,6 @@
                     android:layout_centerHorizontal="true"
                     android:fitsSystemWindows="true"
                     android:scaleType="fitCenter"
-                    app:imageFromUrl="@{viewModel.movie.img}"
                     app:layout_collapseMode="parallax" />
 
             </com.google.android.material.appbar.CollapsingToolbarLayout>

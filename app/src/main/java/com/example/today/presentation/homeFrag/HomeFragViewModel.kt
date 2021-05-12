@@ -1,9 +1,11 @@
 package com.example.today.presentation.homeFrag
 
 import android.util.Log
+import android.view.View
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.navigation.Navigation
 import androidx.navigation.findNavController
 import com.example.today.R
 import com.example.today.di.MainScheduler

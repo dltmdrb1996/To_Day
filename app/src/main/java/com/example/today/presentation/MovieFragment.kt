@@ -1,39 +1,47 @@
 package com.example.today.presentation
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
-import androidx.navigation.Navigation
+import com.bumptech.glide.Glide
+import com.example.today.databinding.FragmentHomeBinding
 import com.example.today.databinding.FragmentMovieBinding
-import com.example.today.presentation.homeFrag.HomeFragViewModel
 
 class MovieFragment : Fragment() {
 
-    lateinit var binding: FragmentMovieBinding
     private val viewModel by viewModels<MovieFragViewModel>()
-
+    private var _binding: FragmentMovieBinding? = null
+    private val binding get() = _binding!!
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentMovieBinding.inflate(inflater, container, false)
-        binding.apply {
-            lifecycleOwner = this@MovieFragment
+        _binding = FragmentMovieBinding.inflate(inflater, container, false)
+        _binding?.apply {
+            lifecycleOwner = viewLifecycleOwner
             viewModel = this@MovieFragment.viewModel
         }
+        viewModel.movie.observe(viewLifecycleOwner,{
+            if (!it.img.isNullOrEmpty()) {
+                Glide.with(this)
+                    .load(it.img)
+                    .skipMemoryCache(true)
+                    .into(binding.moviePoster)
+            }
+        })
 
-        return binding?.root
+        val view = binding.root
+        return view
     }
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-
-        super.onViewCreated(view, savedInstanceState)
+    override fun onDestroyView() {
+        this.context?.let { Glide.get(it).clearMemory() };
+        _binding = null
+        super.onDestroyView()
     }
-
 
 
 
