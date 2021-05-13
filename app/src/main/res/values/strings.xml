@@ -4,9 +4,8 @@
     <string name="temp">%.1f°C</string>
     <string name="humidity">%d%%</string>
 
-    <string name="default_error_message">An error has occurred.</string>
-    <string name="http_requst_fail_error_message">Please try again in a few minutes.</string>
-    <string name="null_response_body_error_message">request has failed.</string>
-    <string name="appbar_scrolling_view_behavior" translatable="false">com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior</string>
+    <string name="default_error_message">에러발생</string>
+    <string name="http_requst_fail_error_message">잠시후 다시시도하세요</string>
+    <string name="null_response_body_error_message">응답실패</string>
 
 </resources>

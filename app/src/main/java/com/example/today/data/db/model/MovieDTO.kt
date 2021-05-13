@@ -6,8 +6,8 @@ import com.google.firebase.firestore.DocumentSnapshot
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class Movie(
-    val title: String, //Document ID is actually the user id
+data class MovieDTO(
+    val title: String,
     val director: String,
     val img : String,
     val actor: String,
@@ -16,7 +16,7 @@ data class Movie(
     val time : String) : Parcelable {
 
     companion object {
-        fun DocumentSnapshot.toMovie(): Movie? {
+        fun DocumentSnapshot.toMovie(): MovieDTO? {
             try {
                 val title = getString("title")!!
                 val director = getString("director")!!
@@ -25,7 +25,7 @@ data class Movie(
                 val script = getString("script")!!
                 val time = getString("time")!!
                 val story = getString("story")!!
-                return Movie(title, director, img, actor, script,story, time)
+                return MovieDTO(title, director, img, actor, script,story, time)
             } catch (e: Exception) {
                 Log.e(TAG, "Error converting user profile", e)
                 return null

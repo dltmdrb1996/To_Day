@@ -1,20 +1,21 @@
 package com.example.today.data.db.firebasedb
 
 import android.util.Log
-import com.example.today.data.db.model.Eng
-import com.example.today.data.db.model.Eng.Companion.toEng
-import com.example.today.data.db.model.Movie
-import com.example.today.data.db.model.Movie.Companion.toMovie
-import com.example.today.data.db.model.Music
-import com.example.today.data.db.model.Music.Companion.toMusic
+import com.example.today.data.db.model.*
+import com.example.today.data.db.model.EngDTO.Companion.toEng
+import com.example.today.data.db.model.MovieDTO.Companion.toMovie
+import com.example.today.data.db.model.MusicDTO.Companion.toMusic
+import com.example.today.domain.mapper.MovieMapper
+import com.example.today.domain.repository.FireBaseRepository
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
-import javax.inject.Inject
+import javax.inject.Singleton
 
-object FirebaseService{
-    val db = FirebaseFirestore.getInstance()
+@Singleton
+object FirebaseService : FireBaseRepository{
+    private val db = FirebaseFirestore.getInstance()
 
-    suspend fun getMovieData(day: Int): Movie? {
+    override suspend fun getMovieData(day: Int): MovieDTO? {
         return try {
             db.collection("movie").document(day.toString()).get().await().toMovie()
         } catch (e: Exception) {
@@ -23,7 +24,7 @@ object FirebaseService{
         }
     }
 
-    suspend fun getEngData(day: Int): Eng? {
+    override suspend fun getEngData(day: Int): EngDTO? {
         return try {
             db.collection("eng").document(day.toString()).get().await().toEng()
         } catch (e: Exception) {
@@ -32,7 +33,7 @@ object FirebaseService{
         }
     }
 
-    suspend fun getMusicData(day: Int): Music? {
+    override suspend fun getMusicData(day: Int): MusicDTO? {
         return try {
             db.collection("music").document(day.toString()).get().await().toMusic()
         } catch (e: Exception) {
