@@ -10,7 +10,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.today.databinding.FragmentHomeBinding
 import com.example.today.databinding.FragmentMovieBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MovieFragment : Fragment() {
 
     private val viewModel by viewModels<MovieFragViewModel>()
@@ -31,7 +33,6 @@ class MovieFragment : Fragment() {
                 Glide.with(this)
                     .load(it.img)
                     .skipMemoryCache(true)
-//                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(binding.moviePoster)
 
             }

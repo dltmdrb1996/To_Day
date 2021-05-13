@@ -10,7 +10,9 @@ import com.bumptech.glide.Glide
 import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.today.databinding.FragmentEngBinding
 import com.example.today.databinding.FragmentHomeBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class EngFragment : Fragment() {
 
     private val viewModel by viewModels<EngFragViewModel>()
@@ -30,11 +32,11 @@ class EngFragment : Fragment() {
                 Glide.with(this)
                     .load(it.img)
                     .skipMemoryCache(true)
-//                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(binding.appCompatImageView)
             }
         })
-        return binding.root
+        val view = binding.root
+        return view
     }
 
     override fun onDestroyView() {

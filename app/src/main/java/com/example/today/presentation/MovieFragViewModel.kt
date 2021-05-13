@@ -4,20 +4,20 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.today.data.db.firebasedb.FirebaseService
-import com.example.today.data.db.model.MovieDTO
+import com.example.today.domain.model.Movie
+import com.example.today.domain.usecase.GetMovieDataUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MovieFragViewModel @Inject constructor() : ViewModel() {
-    private val _movie = MutableLiveData<MovieDTO>()
-    val movie: LiveData<MovieDTO> = _movie
+class MovieFragViewModel @Inject constructor(private val getMovieDataUseCase: GetMovieDataUseCase) : ViewModel() {
+    private val _movie = MutableLiveData<Movie>()
+    val movie: LiveData<Movie> = _movie
 
     init {
         viewModelScope.launch {
-            _movie.value = FirebaseService.getMovieData(1)
+            _movie.value = getMovieDataUseCase(1)!!
         }
     }
 

@@ -54,6 +54,7 @@
             tools:layout_editor_absoluteX="3dp">
 
             <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/Home_Frag_ViewPager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"

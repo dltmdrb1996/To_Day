@@ -12,8 +12,9 @@ import com.example.today.databinding.FragmentHomeBinding
 import com.example.today.databinding.FragmentMusicBinding
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class MusicFragment : Fragment() {
     private var _binding: FragmentMusicBinding? = null
     private val binding get() = _binding!!
@@ -32,12 +33,13 @@ class MusicFragment : Fragment() {
             binding.youtubePlayerView.addYouTubePlayerListener(object :
                 AbstractYouTubePlayerListener() {
                 override fun onReady(@NonNull youTubePlayer: YouTubePlayer) {
-                    val videoId = "Cvq4hflIZj0"
+                    val videoId = it.url
                     youTubePlayer.cueVideo(videoId, 0f)
                 }
             })
         })
-        return binding.root
+        val view = binding.root
+        return view
     }
 
     override fun onDestroyView() {

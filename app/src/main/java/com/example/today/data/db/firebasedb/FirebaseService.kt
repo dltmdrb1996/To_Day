@@ -5,15 +5,14 @@ import com.example.today.data.db.model.*
 import com.example.today.data.db.model.EngDTO.Companion.toEng
 import com.example.today.data.db.model.MovieDTO.Companion.toMovie
 import com.example.today.data.db.model.MusicDTO.Companion.toMusic
-import com.example.today.domain.mapper.MovieMapper
 import com.example.today.domain.repository.FireBaseRepository
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
+import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-object FirebaseService : FireBaseRepository{
-    private val db = FirebaseFirestore.getInstance()
+class FirebaseService @Inject constructor(private val db : FirebaseFirestore) : FireBaseRepository{
 
     override suspend fun getMovieData(day: Int): MovieDTO? {
         return try {

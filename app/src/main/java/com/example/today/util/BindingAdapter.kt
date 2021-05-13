@@ -1,4 +1,4 @@
-package com.example.today.adapter
+package com.example.today.util
 
 import android.widget.ImageView
 import androidx.databinding.BindingAdapter

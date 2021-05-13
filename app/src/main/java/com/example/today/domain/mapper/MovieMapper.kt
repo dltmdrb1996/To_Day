@@ -5,7 +5,7 @@ import com.example.today.domain.model.Movie
 import javax.inject.Inject
 
 class MovieMapper @Inject constructor() {
-    fun transform(MovieDTO : MovieDTO): Movie =
+    fun transform(MovieDTO : MovieDTO): Movie? =
         with(MovieDTO) {
             Movie(title, director, img, actor, script, story, time)
         }
