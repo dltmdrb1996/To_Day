@@ -3,20 +3,21 @@ package com.example.today.presentation.homeFrag
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.navigation.NavController
 import androidx.navigation.Navigation
-import androidx.navigation.findNavController
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.today.R
-import com.example.today.databinding.FragmentEngBinding
 import com.example.today.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
+import java.text.ParseException
+import java.text.SimpleDateFormat
+import java.util.*
 
 @AndroidEntryPoint
 class HomeFragment() : Fragment() {
@@ -36,8 +37,26 @@ class HomeFragment() : Fragment() {
             adapter = this@HomeFragment.adapter
         }
         subscribeUI()
+        setListener()
         viewModel.search("se")
 
+
+        return binding.root
+
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
+    }
+
+    private fun subscribeUI() {
+        viewModel.toastTextId.observe(viewLifecycleOwner) { stringId ->
+            Toast.makeText(activity, getString(stringId), Toast.LENGTH_SHORT).show()
+        }
+    }
+
+    private fun setListener(){
         binding.HomeFragBtnMusic.setOnClickListener {
             navigateFragment(it)
         }
@@ -46,19 +65,6 @@ class HomeFragment() : Fragment() {
         }
         binding.HomeFragBtnEng.setOnClickListener {
             navigateFragment(it)
-        }
-        return binding.root
-    }
-
-    override fun onDestroyView() {
-        _binding = null
-        Log.e("test","Home Destroy")
-        super.onDestroyView()
-    }
-
-    private fun subscribeUI() {
-        viewModel.toastTextId.observe(viewLifecycleOwner) { stringId ->
-            Toast.makeText(activity, getString(stringId), Toast.LENGTH_SHORT).show()
         }
     }
 
@@ -75,4 +81,5 @@ class HomeFragment() : Fragment() {
                     .navigate(HomeFragmentDirections.actionHomeFragmentToMusicFragment())
         }
     }
+
 }

@@ -11,6 +11,7 @@
     </data>
 
 <LinearLayout
+    android:background="@color/WhiteSmoke"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -21,13 +22,66 @@
         android:layout_height="wrap_content"
         app:showFullScreenButton="false" />
 
-    <TextView
-        android:id="@+id/music_Fragment_TV_title"
+
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/scrollView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@{viewModel.music.title}"
-        android:layout_centerInParent="true"
-        android:textSize="50dp"/>
+        android:layout_height="wrap_content"
+        app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+        <LinearLayout
+            android:id="@+id/movieDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="25dp"
+            android:paddingBottom="25dp"
+            android:visibility="visible">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:text="@{viewModel.music.title}"
+                android:textColor="@color/black"
+                android:textSize="30sp" />
+
+            <TextView
+                style="@style/Title"
+                android:text="가수" />
+
+            <TextView
+                style="@style/Text"
+                android:text="@{viewModel.music.singer}" />
+
+            <TextView
+                style="@style/Title"
+                android:text="앨범" />
+
+            <TextView
+                style="@style/Text"
+                android:text="@{viewModel.music.album}" />
+
+            <TextView
+                style="@style/Title"
+                android:text="발매" />
+
+            <TextView
+                style="@style/Text"
+                android:text="@{viewModel.music.cast}" />
+
+            <TextView
+                style="@style/Title"
+                android:text="설명" />
+
+            <TextView
+                style="@style/Text"
+                android:text="@{viewModel.music.script}" />
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
 
 </LinearLayout>
 </layout>

@@ -2,9 +2,6 @@ package com.example.today.data.db.model
 
 import android.os.Parcelable
 import android.util.Log
-import androidx.room.ColumnInfo
-import androidx.room.Entity
-import androidx.room.PrimaryKey
 import com.google.firebase.firestore.DocumentSnapshot
 import kotlinx.parcelize.Parcelize
 
@@ -15,7 +12,8 @@ data class Music(
     val singer: String,
     val cast: String,
     val script : String,
-    val url : String) : Parcelable {
+    val url : String,
+    val album : String) : Parcelable {
 
     companion object {
         fun DocumentSnapshot.toMusic(): Music? {
@@ -25,7 +23,8 @@ data class Music(
                 val cast = getString("cast")!!
                 val script = getString("script")!!
                 val url = getString("url")!!
-                Music(title, singer, cast, script,url)
+                val album = getString("album")!!
+                Music(title, singer, cast, script,url,album)
             } catch (e: Exception) {
                 Log.e(TAG, "Error converting user profile", e)
                 null

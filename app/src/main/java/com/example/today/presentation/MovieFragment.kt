@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.example.today.databinding.FragmentHomeBinding
 import com.example.today.databinding.FragmentMovieBinding
 
@@ -24,16 +25,20 @@ class MovieFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             viewModel = this@MovieFragment.viewModel
         }
+
         viewModel.movie.observe(viewLifecycleOwner,{
             if (!it.img.isNullOrEmpty()) {
                 Glide.with(this)
                     .load(it.img)
                     .skipMemoryCache(true)
+//                    .diskCacheStrategy(DiskCacheStrategy.ALL)
                     .into(binding.moviePoster)
+
             }
         })
 
         val view = binding.root
+
         return view
     }
 

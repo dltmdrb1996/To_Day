@@ -13,7 +13,7 @@
     <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@color/WhiteSmoke">
 
         <com.google.android.material.appbar.AppBarLayout
             android:id="@+id/appbar"
@@ -68,35 +68,43 @@
                     android:textSize="30sp" />
 
                 <TextView
-                    style="@style/MovieDetailsTitle"
+                    style="@style/Title"
                     android:text="감독" />
 
                 <TextView
-                    style="@style/MovieDetailsText"
+                    style="@style/Text"
                     android:text="@{viewModel.movie.director}" />
 
                 <TextView
-                    style="@style/MovieDetailsTitle"
+                    style="@style/Title"
                     android:text="러닝타임" />
 
                 <TextView
-                    style="@style/MovieDetailsText"
+                    style="@style/Text"
                     android:text="@{viewModel.movie.time}" />
 
                 <TextView
-                    style="@style/MovieDetailsTitle"
+                    style="@style/Title"
                     android:text="배우" />
 
                 <TextView
-                    style="@style/MovieDetailsText"
+                    style="@style/Text"
                     android:text="@{viewModel.movie.actor}" />
 
                 <TextView
-                    style="@style/MovieDetailsTitle"
+                    style="@style/Title"
                     android:text="줄거리" />
 
                 <TextView
-                    style="@style/MovieDetailsText"
+                    style="@style/Text"
+                    android:text="@{viewModel.movie.story}" />
+
+                <TextView
+                    style="@style/Title"
+                    android:text="리뷰" />
+
+                <TextView
+                    style="@style/Text"
                     android:text="@{viewModel.movie.script}" />
 
             </LinearLayout>

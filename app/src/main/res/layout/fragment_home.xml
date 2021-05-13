@@ -14,35 +14,75 @@
             type="com.example.today.presentation.homeFrag.WeatherInfoAdapter" />
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/WhiteSmoke"
         android:orientation="vertical"
-        android:weightSum="1"
         tools:context=".presentation.homeFrag.HomeFragment">
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_baseline_arrow_right_24"
+            app:layout_constraintBottom_toTopOf="@+id/layout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_baseline_arrow_left_24"
+            app:layout_constraintBottom_toTopOf="@+id/layout2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.example.today.presentation.homeFrag.CustomSwipeRefreshLayout
+            android:id="@+id/layout1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="15dp"
-            android:layout_weight="0.15"
+            android:layout_margin="25dp"
+            app:layout_constraintBottom_toTopOf="@id/layout2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_weight="15"
             app:onRefreshListener="@{() -> viewModel.refresh()}"
-            app:refreshing="@{viewModel.dataLoading}">
+            app:refreshing="@{viewModel.dataLoading}"
+            tools:layout_editor_absoluteX="3dp">
 
             <androidx.viewpager2.widget.ViewPager2
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 app:adapter="@{adapter}"
-                app:adapterWeatherInfoList="@{viewModel.locationWeathers}"
+                app:adapterViewPager="@{viewModel.locationWeathers}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />>
 
         </com.example.today.presentation.homeFrag.CustomSwipeRefreshLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.85">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout1"
+            app:layout_constraintVertical_weight="85">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="sans-serif-black"
+                android:text="To Day"
+                android:textColor="@color/LightSlateGray"
+                android:textSize="80sp"
+                android:textStyle="italic"
+                app:layout_constraintBottom_toTopOf="@+id/Home_frag_Btn_Music"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <com.google.android.material.button.MaterialButton
                 android:id="@+id/Home_Frag_Btn_Movie"
@@ -54,6 +94,7 @@
                 app:cornerRadius="15dp"
                 app:icon="@drawable/ic_baseline_movie_24"
                 app:iconGravity="top"
+                app:iconSize="50dp"
                 app:iconTint="@color/holo_green_dark"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toStartOf="@+id/Home_frag_Btn_Music"
@@ -70,6 +111,7 @@
                 app:cornerRadius="15dp"
                 app:icon="@drawable/ic_baseline_music_note_24"
                 app:iconGravity="top"
+                app:iconSize="50dp"
                 app:iconTint="@color/holo_green_dark"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -87,6 +129,7 @@
                 app:cornerRadius="15dp"
                 app:icon="@drawable/ic_baseline_school_24"
                 app:iconGravity="top"
+                app:iconSize="50dp"
                 app:iconTint="@color/holo_green_dark"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -94,6 +137,6 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+    <!--    </androidx.constraintlayout.widget.ConstraintLayout>-->
 </layout>

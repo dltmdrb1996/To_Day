@@ -12,6 +12,7 @@ data class Movie(
     val img : String,
     val actor: String,
     val script: String,
+    val story : String,
     val time : String) : Parcelable {
 
     companion object {
@@ -23,7 +24,8 @@ data class Movie(
                 val actor = getString("actor")!!
                 val script = getString("script")!!
                 val time = getString("time")!!
-                return Movie(title, director, img, actor, script, time)
+                val story = getString("story")!!
+                return Movie(title, director, img, actor, script,story, time)
             } catch (e: Exception) {
                 Log.e(TAG, "Error converting user profile", e)
                 return null

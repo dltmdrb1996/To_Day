@@ -19,8 +19,8 @@ fun bindImageFromUrl(view: ImageView, imageUrl: String?) {
     }
 }
 
-@BindingAdapter("adapterWeatherInfoList")
-fun bindAdapterPokemonList(view: ViewPager2, list: List<LocationWeather>?) {
+@BindingAdapter("adapterViewPager")
+fun bindAdapterViewPager(view: ViewPager2, list: List<LocationWeather>?) {
     list?.let { itemList ->
         view.adapter?.apply {
             (this as WeatherInfoAdapter).addHeaderAndSumbitList(itemList)
