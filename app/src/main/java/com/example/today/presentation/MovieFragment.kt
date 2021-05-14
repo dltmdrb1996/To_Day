@@ -35,9 +35,7 @@ class MovieFragment : Fragment() {
 
             }
         })
-
         val view = binding.root
-
         return view
     }
 

@@ -9,15 +9,7 @@ import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.today.domain.model.LocationWeather
 import com.example.today.presentation.homeFrag.WeatherInfoAdapter
 
-@BindingAdapter("imageFromUrl")
-fun bindImageFromUrl(view: ImageView, imageUrl: String?) {
-    if (!imageUrl.isNullOrEmpty()) {
-        Glide.with(view.context)
-            .load(imageUrl)
-            .skipMemoryCache(true)
-            .into(view)
-    }
-}
+
 
 @BindingAdapter("adapterViewPager")
 fun bindAdapterViewPager(view: ViewPager2, list: List<LocationWeather>?) {

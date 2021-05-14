@@ -23,7 +23,6 @@
             android:layout_height="match_parent"
             android:alpha=".50"
             android:scaleType="fitCenter"
-            app:imageFromUrl="@{viewModel.eng.img}"
             tools:layout_editor_absoluteX="-32dp"
             tools:layout_editor_absoluteY="-150dp" />
 

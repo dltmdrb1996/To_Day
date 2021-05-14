@@ -9,21 +9,14 @@ import com.example.today.domain.model.LocationWeather
 
 
 class WeatherInfoAdapter : RecyclerView.Adapter<WeatherInfoAdapter.WeatherInfoViewHolder>() {
-
-    private var items: List<weatherInfoItem> = emptyList()
+    private val items: ArrayList<LocationWeather> = arrayListOf()
 
     fun addHeaderAndSumbitList(list: List<LocationWeather>) {
-        val itemList: MutableList<weatherInfoItem> = mutableListOf()
-        val diffCallback = DiffUtilCallback(this.items, itemList)
+        val diffCallback = DiffUtilCallback(items, list)
         val diffResult = DiffUtil.calculateDiff(diffCallback)
-        if (!list.isEmpty()) {
-            for (i in list) {
-
-                itemList.add(weatherInfoItem(i))
-            }
-        }
-        this.items = itemList
-        notifyDataSetChanged()
+        items.clear()
+        items.addAll(list)
+        diffResult.dispatchUpdatesTo(this)
     }
 
     class WeatherInfoViewHolder constructor(val binding: AdapterListBinding) :
@@ -55,13 +48,10 @@ class WeatherInfoAdapter : RecyclerView.Adapter<WeatherInfoAdapter.WeatherInfoVi
     }
 
 
-    data class weatherInfoItem(val locationWeather: LocationWeather)
-
-
     override fun onBindViewHolder(holder: WeatherInfoViewHolder, position: Int) {
 
-        val weatherInfoItem = items[position]
-        holder.bind(weatherInfoItem.locationWeather)
+        val locationWeather = items[position]
+        holder.bind(locationWeather)
 
     }
 
@@ -70,8 +60,8 @@ class WeatherInfoAdapter : RecyclerView.Adapter<WeatherInfoAdapter.WeatherInfoVi
 
 
 private class DiffUtilCallback(
-    private val oldItems: List<WeatherInfoAdapter.weatherInfoItem>,
-    private val newItems: List<WeatherInfoAdapter.weatherInfoItem>
+    private val oldItems: List<LocationWeather>,
+    private val newItems: List<LocationWeather>
 ) : DiffUtil.Callback() {
 
 
@@ -81,19 +71,14 @@ private class DiffUtilCallback(
     override fun getNewListSize(): Int =
         newItems.size
 
-    /**
-     * 고유 값을 비교하는게 좋다.
-     */
+
     override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
         val oldItem = oldItems[oldItemPosition]
         val newItem = newItems[newItemPosition]
-
-        return oldItem.locationWeather.locationId == newItem.locationWeather.locationId
+        return oldItem.locationId == newItem.locationId && oldItem.weathers == newItem.weathers
     }
 
-    /**
-     * 아이템을 서로 비교하는게 좋다.
-     */
+
     override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
         val oldItem = oldItems[oldItemPosition]
         val newItem = newItems[newItemPosition]
@@ -101,5 +86,10 @@ private class DiffUtilCallback(
         return oldItem == newItem
     }
 
-
+    enum class PayloadKey {
+        VALUE
+    }
+    override fun getChangePayload(oldItemPosition: Int, newItemPosition: Int): Any? {
+        return listOf(PayloadKey.VALUE)
+    }
 }

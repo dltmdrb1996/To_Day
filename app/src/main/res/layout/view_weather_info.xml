@@ -66,13 +66,12 @@
             android:layout_height="0dp"
             android:adjustViewBounds="true"
             android:scaleType="fitCenter"
-            app:imageFromUrl="@{weather.icon}"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/infoContainer"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintWidth_max="45dp"
-            tools:src="@mipmap/ic_launcher" />
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
