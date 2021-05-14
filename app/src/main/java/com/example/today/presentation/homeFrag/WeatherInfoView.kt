@@ -25,8 +25,7 @@ class WeatherInfoView constructor(
         binding.weather = weather
         Glide.with(this.context)
             .load(weather.icon)
-            .skipMemoryCache(true)
-            .thumbnail(0.5f)
+//            .skipMemoryCache(true)
             .into(binding.statusIcon)
 
     }

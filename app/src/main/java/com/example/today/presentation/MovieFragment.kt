@@ -30,7 +30,7 @@ class MovieFragment : Fragment() {
             if (!it.img.isNullOrEmpty()) {
                 Glide.with(this)
                     .load(it.img)
-                    .skipMemoryCache(true)
+//                    .skipMemoryCache(true)
                     .into(binding.moviePoster)
 
             }
