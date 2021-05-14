@@ -4,8 +4,6 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager.widget.PagerAdapter
-import androidx.viewpager2.widget.ViewPager2
 import com.example.today.databinding.AdapterListBinding
 import com.example.today.domain.model.LocationWeather
 
@@ -16,9 +14,11 @@ class WeatherInfoAdapter : RecyclerView.Adapter<WeatherInfoAdapter.WeatherInfoVi
 
     fun addHeaderAndSumbitList(list: List<LocationWeather>) {
         val itemList: MutableList<weatherInfoItem> = mutableListOf()
-
+        val diffCallback = DiffUtilCallback(this.items, itemList)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
         if (!list.isEmpty()) {
             for (i in list) {
+
                 itemList.add(weatherInfoItem(i))
             }
         }
@@ -67,3 +67,39 @@ class WeatherInfoAdapter : RecyclerView.Adapter<WeatherInfoAdapter.WeatherInfoVi
 
 }
 
+
+
+private class DiffUtilCallback(
+    private val oldItems: List<WeatherInfoAdapter.weatherInfoItem>,
+    private val newItems: List<WeatherInfoAdapter.weatherInfoItem>
+) : DiffUtil.Callback() {
+
+
+    override fun getOldListSize(): Int =
+        oldItems.size
+
+    override fun getNewListSize(): Int =
+        newItems.size
+
+    /**
+     * 고유 값을 비교하는게 좋다.
+     */
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        val oldItem = oldItems[oldItemPosition]
+        val newItem = newItems[newItemPosition]
+
+        return oldItem.locationWeather.locationId == newItem.locationWeather.locationId
+    }
+
+    /**
+     * 아이템을 서로 비교하는게 좋다.
+     */
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        val oldItem = oldItems[oldItemPosition]
+        val newItem = newItems[newItemPosition]
+
+        return oldItem == newItem
+    }
+
+
+}

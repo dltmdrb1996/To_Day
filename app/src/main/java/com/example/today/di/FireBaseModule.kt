@@ -1,11 +1,10 @@
 package com.example.today.di
 
-import com.example.today.data.api.repository.WeatherRepositoryImpl
 import com.example.today.data.db.firebasedb.FirebaseService
-import com.example.today.domain.repository.FireBaseRepository
-import com.example.today.domain.repository.WeatherRepository
+import com.example.today.data.mapper.EngMapper
+import com.example.today.data.mapper.MovieMapper
+import com.example.today.data.mapper.MusicMapper
 import com.google.firebase.firestore.FirebaseFirestore
-import dagger.Binds
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -14,17 +13,20 @@ import javax.inject.Singleton
 
 @Module
 @InstallIn(SingletonComponent::class)
-class FireBaseModule     {
+class FireBaseModule {
 
     @Singleton
     @Provides
-    fun providesDB() : FirebaseFirestore = FirebaseFirestore.getInstance()
+    fun providesDB(): FirebaseFirestore = FirebaseFirestore.getInstance()
 
     @Singleton
     @Provides
-    fun providesFirebase(firebaseFirestore : FirebaseFirestore) : FirebaseService = FirebaseService(firebaseFirestore)
-
-
+    fun providesFirebase(
+        firebaseFirestore: FirebaseFirestore,
+        engMapper: EngMapper,
+        movieMapper: MovieMapper,
+        musicMapper: MusicMapper
+    ): FirebaseService = FirebaseService(firebaseFirestore, engMapper, musicMapper, movieMapper)
 
 
 }

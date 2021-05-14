@@ -17,7 +17,7 @@ class MovieFragViewModel @Inject constructor(private val getMovieDataUseCase: Ge
 
     init {
         viewModelScope.launch {
-            _movie.value = getMovieDataUseCase(1)!!
+            _movie.value = getMovieDataUseCase()!!
         }
     }
 

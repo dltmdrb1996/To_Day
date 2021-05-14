@@ -7,8 +7,6 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.example.today.databinding.FragmentHomeBinding
 import com.example.today.databinding.FragmentMovieBinding
 import dagger.hilt.android.AndroidEntryPoint
 

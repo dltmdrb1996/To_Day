@@ -1,11 +1,11 @@
 package com.example.today.domain.repository
 
-import com.example.today.data.db.model.EngDTO
-import com.example.today.data.db.model.MovieDTO
-import com.example.today.data.db.model.MusicDTO
+import com.example.today.domain.model.Eng
+import com.example.today.domain.model.Movie
+import com.example.today.domain.model.Music
 
 interface FireBaseRepository {
-    suspend fun getMovieData(day: Int): MovieDTO?
-    suspend fun getEngData(day: Int): EngDTO?
-    suspend fun getMusicData(day: Int): MusicDTO?
+    suspend fun getMovieData(day: Int): Movie?
+    suspend fun getEngData(day: Int): Eng?
+    suspend fun getMusicData(day: Int): Music?
 }

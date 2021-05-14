@@ -17,7 +17,7 @@ class EngFragViewModel @Inject constructor(private val getEngUseCase : GetEngDat
 
     init {
         viewModelScope.launch {
-            _eng.value = getEngUseCase(1)!!
+            _eng.value = getEngUseCase()!!
         }
     }
 

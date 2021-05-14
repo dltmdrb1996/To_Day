@@ -1,10 +1,8 @@
 package com.example.today.data.api.repository
 
-import android.os.Parcel
-import android.os.Parcelable
 import com.example.today.data.api.datasource.WeatherDataSource
-import com.example.today.domain.mapper.LocationMapper
-import com.example.today.domain.mapper.LocationWeatherMapper
+import com.example.today.data.mapper.LocationMapper
+import com.example.today.data.mapper.LocationWeatherMapper
 import com.example.today.domain.model.Location
 import com.example.today.domain.model.LocationWeather
 import com.example.today.domain.repository.WeatherRepository

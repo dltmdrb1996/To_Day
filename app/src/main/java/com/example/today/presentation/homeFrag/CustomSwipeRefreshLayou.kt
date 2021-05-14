@@ -3,9 +3,7 @@ package com.example.today.presentation.homeFrag
 import android.content.Context
 import android.util.AttributeSet
 import android.view.MotionEvent
-
 import android.view.ViewConfiguration
-
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 
 

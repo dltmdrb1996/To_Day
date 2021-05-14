@@ -1,4 +1,4 @@
-package com.example.today.domain.mapper
+package com.example.today.data.mapper
 
 import com.example.today.data.db.model.EngDTO
 import com.example.today.domain.model.Eng

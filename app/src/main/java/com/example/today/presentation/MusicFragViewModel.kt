@@ -17,7 +17,7 @@ class MusicFragViewModel @Inject constructor(private val getMusicDataUserCase: G
 
     init {
         viewModelScope.launch {
-            _music.value = getMusicDataUserCase(1)!!
+            _music.value = getMusicDataUserCase()!!
         }
     }
 
