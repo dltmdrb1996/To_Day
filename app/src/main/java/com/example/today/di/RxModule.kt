@@ -1,6 +1,6 @@
 package com.example.today.di
 
-import com.example.today.data.api.datasource.WeatherRemoteDataSource
+import com.example.today.data.weatherdata.datasource.WeatherRemoteDataSource
 import com.example.today.domain.usecase.SearchLocationWeathersUseCase
 import dagger.Module
 import dagger.Provides

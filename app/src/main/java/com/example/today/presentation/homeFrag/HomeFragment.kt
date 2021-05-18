@@ -51,14 +51,19 @@ class HomeFragment() : Fragment() {
     }
 
     private fun setListener(){
-        binding.HomeFragBtnMusic.setOnClickListener {
-            navigateFragment(it)
-        }
-        binding.HomeFragBtnMovie.setOnClickListener {
-            navigateFragment(it)
-        }
-        binding.HomeFragBtnEng.setOnClickListener {
-            navigateFragment(it)
+        _binding?.apply {
+            HomeFragBtnMovie.setOnClickListener {
+                navigateFragment(it)
+            }
+            HomeFragBtnEng.setOnClickListener {
+                navigateFragment(it)
+            }
+            HomeFragBtnMusic.setOnClickListener {
+                navigateFragment(it)
+            }
+            HomeFragBtnSave.setOnClickListener {
+                navigateFragment(it)
+            }
         }
     }
 
@@ -73,6 +78,9 @@ class HomeFragment() : Fragment() {
             R.id.Home_frag_Btn_Music ->
                 Navigation.findNavController(it)
                     .navigate(HomeFragmentDirections.actionHomeFragmentToMusicFragment())
+            R.id.Home_Frag_Btn_Save ->
+                Navigation.findNavController(it)
+                    .navigate(HomeFragmentDirections.actionHomeFragmentToSaveFragment())
         }
     }
 

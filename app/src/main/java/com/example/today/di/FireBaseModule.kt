@@ -1,6 +1,6 @@
 package com.example.today.di
 
-import com.example.today.data.db.firebasedb.FirebaseService
+import com.example.today.data.db.firebasedb.FirebaseRepositoryImpl
 import com.example.today.data.mapper.EngMapper
 import com.example.today.data.mapper.MovieMapper
 import com.example.today.data.mapper.MusicMapper
@@ -26,7 +26,7 @@ class FireBaseModule {
         engMapper: EngMapper,
         movieMapper: MovieMapper,
         musicMapper: MusicMapper
-    ): FirebaseService = FirebaseService(firebaseFirestore, engMapper, musicMapper, movieMapper)
+    ): FirebaseRepositoryImpl = FirebaseRepositoryImpl(firebaseFirestore, engMapper, musicMapper, movieMapper)
 
 
 }

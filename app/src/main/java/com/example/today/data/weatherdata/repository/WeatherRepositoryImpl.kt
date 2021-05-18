@@ -1,6 +1,6 @@
-package com.example.today.data.api.repository
+package com.example.today.data.weatherdata.repository
 
-import com.example.today.data.api.datasource.WeatherDataSource
+import com.example.today.data.weatherdata.datasource.WeatherDataSource
 import com.example.today.data.mapper.LocationMapper
 import com.example.today.data.mapper.LocationWeatherMapper
 import com.example.today.domain.model.Location

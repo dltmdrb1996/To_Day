@@ -17,7 +17,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class FirebaseService @Inject constructor(
+class FirebaseRepositoryImpl @Inject constructor(
     private val db: FirebaseFirestore,
     private val engMapper: EngMapper,
     private val musicMapper: MusicMapper,

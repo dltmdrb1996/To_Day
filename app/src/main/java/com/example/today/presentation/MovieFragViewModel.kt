@@ -6,12 +6,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.today.domain.model.Movie
 import com.example.today.domain.usecase.GetMovieDataUseCase
+import com.example.today.domain.usecase.RoomDataUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class MovieFragViewModel @Inject constructor(private val getMovieDataUseCase: GetMovieDataUseCase) : ViewModel() {
+class MovieFragViewModel @Inject constructor(
+    private val getMovieDataUseCase: GetMovieDataUseCase,
+    private val roomDataUseCase: RoomDataUseCase
+) : ViewModel() {
     private val _movie = MutableLiveData<Movie>()
     val movie: LiveData<Movie> = _movie
 
@@ -21,4 +25,9 @@ class MovieFragViewModel @Inject constructor(private val getMovieDataUseCase: Ge
         }
     }
 
+    fun insert(title : String) {
+            viewModelScope.launch {
+                roomDataUseCase.insert(title)
+            }
+    }
 }

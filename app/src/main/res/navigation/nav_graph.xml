@@ -31,6 +31,13 @@
             app:exitAnim="@anim/drawerout"
             app:popEnterAnim="@anim/drawer"
             app:popExitAnim="@anim/drawerout" />
+        <action
+            android:id="@+id/action_homeFragment_to_saveFragment"
+            app:destination="@id/saveFragment"
+            app:enterAnim="@anim/drawer"
+            app:exitAnim="@anim/drawerout"
+            app:popEnterAnim="@anim/drawer"
+            app:popExitAnim="@anim/drawerout" />
     </fragment>
     <fragment
         android:id="@+id/movieFragment"
@@ -48,5 +55,13 @@
         android:name="com.example.today.presentation.EngFragment"
         android:label="fragment_eng"
         tools:layout="@layout/fragment_eng" />
+    <fragment
+        android:id="@+id/saveFragment"
+        android:name="com.example.today.presentation.saveFrag.SaveFragment"
+        android:label="SaveFragment"
+        tools:layout="@layout/fragment_save">
+
+    </fragment>
+
 
 </navigation>

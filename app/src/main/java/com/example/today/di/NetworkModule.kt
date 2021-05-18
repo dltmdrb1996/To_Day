@@ -1,7 +1,7 @@
 package com.example.today.di
 
 import com.example.today.BuildConfig
-import com.example.today.data.api.network.WeatherServiceApi
+import com.example.today.data.weatherdata.network.WeatherServiceApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

@@ -6,12 +6,16 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.today.domain.model.Eng
 import com.example.today.domain.usecase.GetEngDataUseCase
+import com.example.today.domain.usecase.RoomDataUseCase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class EngFragViewModel @Inject constructor(private val getEngUseCase : GetEngDataUseCase) : ViewModel() {
+class EngFragViewModel @Inject constructor(
+    private val getEngUseCase: GetEngDataUseCase,
+    private val roomDataUseCase: RoomDataUseCase
+) : ViewModel() {
     private val _eng = MutableLiveData<Eng>()
     val eng: LiveData<Eng> = _eng
 
@@ -21,4 +25,9 @@ class EngFragViewModel @Inject constructor(private val getEngUseCase : GetEngDat
         }
     }
 
+    fun insert(title: String) {
+        viewModelScope.launch {
+            roomDataUseCase.insert(title)
+        }
+    }
 }

@@ -1,6 +1,6 @@
 package com.example.today.data.mapper
 
-import com.example.today.data.api.model.LocationDTO
+import com.example.today.data.weatherdata.model.LocationDTO
 import com.example.today.domain.model.Location
 import javax.inject.Inject
 import javax.inject.Singleton

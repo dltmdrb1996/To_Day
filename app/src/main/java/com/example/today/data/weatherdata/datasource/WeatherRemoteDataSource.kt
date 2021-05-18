@@ -1,7 +1,7 @@
-package com.example.today.data.api.datasource
-import com.example.today.data.api.model.LocationDTO
-import com.example.today.data.api.model.LocationWeatherDTO
-import com.example.today.data.api.network.WeatherServiceApi
+package com.example.today.data.weatherdata.datasource
+import com.example.today.data.weatherdata.model.LocationDTO
+import com.example.today.data.weatherdata.model.LocationWeatherDTO
+import com.example.today.data.weatherdata.network.WeatherServiceApi
 import com.example.today.di.IOScheduler
 import com.example.today.util.error.HttpRequestFailException
 import com.example.today.util.error.NullResponseBodyException

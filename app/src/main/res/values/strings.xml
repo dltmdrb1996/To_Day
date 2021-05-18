@@ -7,5 +7,7 @@
     <string name="default_error_message">에러발생</string>
     <string name="http_requst_fail_error_message">잠시후 다시시도하세요</string>
     <string name="null_response_body_error_message">응답실패</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

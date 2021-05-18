@@ -1,7 +1,7 @@
-package com.example.today.data.api.datasource
+package com.example.today.data.weatherdata.datasource
 
-import com.example.today.data.api.model.LocationDTO
-import com.example.today.data.api.model.LocationWeatherDTO
+import com.example.today.data.weatherdata.model.LocationDTO
+import com.example.today.data.weatherdata.model.LocationWeatherDTO
 import io.reactivex.Observable
 
 interface WeatherDataSource {

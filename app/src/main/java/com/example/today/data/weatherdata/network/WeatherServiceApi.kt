@@ -1,7 +1,7 @@
-package com.example.today.data.api.network
+package com.example.today.data.weatherdata.network
 
-import com.example.today.data.api.model.LocationDTO
-import com.example.today.data.api.model.LocationWeatherDTO
+import com.example.today.data.weatherdata.model.LocationDTO
+import com.example.today.data.weatherdata.model.LocationWeatherDTO
 import io.reactivex.Observable
 import retrofit2.Response
 import retrofit2.http.GET

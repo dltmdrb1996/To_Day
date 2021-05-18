@@ -71,6 +71,21 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/eng_Frag_Tv_Kor" />
 
-
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/Home_Frag_Btn_Save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            android:backgroundTint="@color/LightGoldenrodYellow"
+            android:onClick="@{()->viewModel.insert(viewModel.eng.eng)}"
+            android:text="저장하기"
+            android:textColor="@color/black"
+            app:cornerRadius="50dp"
+            app:icon="@drawable/ic_baseline_save_24"
+            app:iconGravity="top"
+            app:iconSize="50dp"
+            app:iconTint="@color/holo_green_dark"
+            app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView"
+            app:layout_constraintStart_toStartOf="parent" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,6 +1,6 @@
 package com.example.today.data.mapper
 
-import com.example.today.data.api.model.WeatherDTO
+import com.example.today.data.weatherdata.model.WeatherDTO
 import com.example.today.domain.model.Weather
 import com.example.today.util.IconUrlGenerator
 import javax.inject.Inject

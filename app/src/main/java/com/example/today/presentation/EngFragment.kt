@@ -29,7 +29,6 @@ class EngFragment : Fragment() {
             if (!it.img.isNullOrEmpty()) {
                 Glide.with(this)
                     .load(it.img)
-//                    .skipMemoryCache(true)
                     .into(binding.appCompatImageView)
             }
         })
