@@ -1,12 +1,7 @@
 package com.example.today.util
 
-import android.widget.ImageView
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager2.widget.ViewPager2
-import com.bumptech.glide.Glide
-import com.bumptech.glide.load.engine.DiskCacheStrategy
-import com.bumptech.glide.load.resource.drawable.DrawableTransitionOptions
 import com.example.today.domain.model.LocationWeather
 import com.example.today.presentation.homeFrag.WeatherInfoAdapter
 
@@ -19,11 +14,6 @@ fun bindAdapterViewPager(view: ViewPager2, list: List<LocationWeather>?) {
             (this as WeatherInfoAdapter).addHeaderAndSumbitList(itemList)
         }
     }
-//    @BindingAdapter("app:items")
-//    fun setItems(listView: RecyclerView, items: List<Save>?) {
-//        items?.let {
-//            (listView.adapter as SaveAdapter).submitList(items)
-//        }
-//    }
+
 }
 

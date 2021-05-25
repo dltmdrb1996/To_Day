@@ -25,7 +25,13 @@ class MovieFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             viewModel = this@MovieFragment.viewModel
         }
+        viewModel.loadMovieDetails(1)
+        val view = binding.root
+        return view
+    }
 
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel.movie.observe(viewLifecycleOwner,{
             if (!it.img.isNullOrEmpty()) {
                 Glide.with(this)
@@ -34,8 +40,6 @@ class MovieFragment : Fragment() {
 
             }
         })
-        val view = binding.root
-        return view
     }
 
     override fun onDestroyView() {

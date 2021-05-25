@@ -4,6 +4,7 @@ import com.example.today.data.db.firebasedb.FirebaseRepositoryImpl
 import com.example.today.data.mapper.EngMapper
 import com.example.today.data.mapper.MovieMapper
 import com.example.today.data.mapper.MusicMapper
+import com.example.today.util.NetworkHandler
 import com.google.firebase.firestore.FirebaseFirestore
 import dagger.Module
 import dagger.Provides
@@ -25,8 +26,9 @@ class FireBaseModule {
         firebaseFirestore: FirebaseFirestore,
         engMapper: EngMapper,
         movieMapper: MovieMapper,
-        musicMapper: MusicMapper
-    ): FirebaseRepositoryImpl = FirebaseRepositoryImpl(firebaseFirestore, engMapper, musicMapper, movieMapper)
+        musicMapper: MusicMapper,
+        networkHandler: NetworkHandler
+    ): FirebaseRepositoryImpl = FirebaseRepositoryImpl(firebaseFirestore, engMapper, musicMapper, movieMapper, networkHandler)
 
 
 }

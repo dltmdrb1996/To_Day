@@ -28,6 +28,13 @@ class MusicFragment : Fragment() {
             viewModel = this@MusicFragment.viewModel
         }
 
+        viewModel.loadMusicDetails(1)
+        val view = binding.root
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel.music.observe(viewLifecycleOwner,{
             binding.youtubePlayerView.addYouTubePlayerListener(object :
                 AbstractYouTubePlayerListener() {
@@ -37,8 +44,6 @@ class MusicFragment : Fragment() {
                 }
             })
         })
-        val view = binding.root
-        return view
     }
 
     override fun onDestroyView() {

@@ -11,6 +11,9 @@ import com.example.today.domain.model.Eng
 import com.example.today.domain.model.Movie
 import com.example.today.domain.model.Music
 import com.example.today.domain.repository.FireBaseRepository
+import com.example.today.util.Either
+import com.example.today.util.NetworkHandler
+import com.example.today.util.error.Failure
 import com.google.firebase.firestore.FirebaseFirestore
 import kotlinx.coroutines.tasks.await
 import javax.inject.Inject
@@ -21,39 +24,40 @@ class FirebaseRepositoryImpl @Inject constructor(
     private val db: FirebaseFirestore,
     private val engMapper: EngMapper,
     private val musicMapper: MusicMapper,
-    private val movieMapper: MovieMapper
+    private val movieMapper: MovieMapper,
+    private val networkHandler: NetworkHandler
 ) : FireBaseRepository {
 
-    override suspend fun getMovieData(day: Int): Movie? {
-        return try {
-            db.collection("movie").document(day.toString()).get().await().toMovie()?.let {
-                movieMapper.transform(it)
-            }
-        } catch (e: Exception) {
-            Log.e("FirebaseProfileService", "No such document")
-            null
+    override suspend fun getMovieData(day: Int): Either<Failure, Movie?> {
+
+        return when (networkHandler.isNetworkAvailable()) {
+            true -> Either.Right(db.collection("movie")
+                .document(day.toString()).get().await().toMovie()?.let {
+                    movieMapper.transform(it)
+                })
+            false -> Either.Left(Failure.ServerError)
         }
     }
 
-    override suspend fun getEngData(day: Int): Eng? {
-        return try {
-            db.collection("eng").document(day.toString()).get().await().toEng()?.let {
-                engMapper.transform(it)
-            }
-        } catch (e: Exception) {
-            Log.e("FirebaseProfileService", "No such document")
-            null
+    override suspend fun getEngData(day: Int): Either<Failure, Eng?> {
+
+        return when (networkHandler.isNetworkAvailable()) {
+            true -> Either.Right(db.collection("eng")
+                .document(day.toString()).get().await().toEng()?.let {
+                    engMapper.transform(it)
+                })
+            false -> Either.Left(Failure.ServerError)
         }
     }
 
-    override suspend fun getMusicData(day: Int): Music? {
-        return try {
-            db.collection("music").document(day.toString()).get().await().toMusic()?.let {
-                musicMapper.transform(it)
-            }
-        } catch (e: Exception) {
-            Log.e("FirebaseProfileService", "No such document")
-            null
+    override suspend fun getMusicData(day: Int): Either<Failure, Music?> {
+
+        return when (networkHandler.isNetworkAvailable()) {
+            true -> Either.Right(db.collection("music")
+                .document(day.toString()).get().await().toMusic()?.let {
+                    musicMapper.transform(it)
+                })
+            false -> Either.Left(Failure.ServerError)
         }
     }
 }

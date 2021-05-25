@@ -25,6 +25,13 @@ class EngFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             viewModel = this@EngFragment.viewModel
         }
+        viewModel.loadEngDetails(1)
+        val view = binding.root
+        return view
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         viewModel.eng.observe(viewLifecycleOwner,{
             if (!it.img.isNullOrEmpty()) {
                 Glide.with(this)
@@ -32,10 +39,7 @@ class EngFragment : Fragment() {
                     .into(binding.appCompatImageView)
             }
         })
-        val view = binding.root
-        return view
     }
-
     override fun onDestroyView() {
         this.context?.let { Glide.get(it).clearMemory() };
         _binding = null
