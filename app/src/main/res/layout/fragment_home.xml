@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.example.today.presentation.homeFrag.HomeFragViewModel" />
@@ -12,6 +11,7 @@
         <variable
             name="adapter"
             type="com.example.today.presentation.homeFrag.WeatherInfoAdapter" />
+
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

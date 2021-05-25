@@ -39,7 +39,6 @@ class HomeFragViewModel @Inject constructor(
     val toastTextId: LiveData<Int>
         get() = _toastTextId
 
-
     fun search(search: String) {
         if (_dataLoading.value == true || search == _search.value) {
             return

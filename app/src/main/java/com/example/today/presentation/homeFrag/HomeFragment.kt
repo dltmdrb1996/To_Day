@@ -2,6 +2,7 @@ package com.example.today.presentation.homeFrag
 
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,7 +10,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import com.example.today.R
 import com.example.today.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -31,17 +31,20 @@ class HomeFragment() : Fragment() {
             viewModel = this@HomeFragment.viewModel
             adapter = this@HomeFragment.adapter
         }
+        return binding.root
+    }
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
         subscribeUI()
         setListener()
         viewModel.search("se")
-
-
-        return binding.root
     }
 
     override fun onDestroyView() {
         _binding = null
         super.onDestroyView()
+
     }
 
     private fun subscribeUI() {
@@ -69,19 +72,23 @@ class HomeFragment() : Fragment() {
 
     private fun navigateFragment(it: View) {
         when (it.id) {
-            R.id.Home_Frag_Btn_Eng ->
+            binding.HomeFragBtnEng.id ->
                 Navigation.findNavController(it)
                     .navigate(HomeFragmentDirections.actionHomeFragmentToEngFragment())
-            R.id.Home_Frag_Btn_Movie ->
+            binding.HomeFragBtnMovie.id ->
                 Navigation.findNavController(it)
                     .navigate(HomeFragmentDirections.actionHomeFragmentToMovieFragment())
-            R.id.Home_frag_Btn_Music ->
+            binding.HomeFragBtnMusic.id ->
                 Navigation.findNavController(it)
                     .navigate(HomeFragmentDirections.actionHomeFragmentToMusicFragment())
-            R.id.Home_Frag_Btn_Save ->
+            binding.HomeFragBtnSave.id ->
                 Navigation.findNavController(it)
                     .navigate(HomeFragmentDirections.actionHomeFragmentToSaveFragment())
         }
     }
+
+
+
+
 
 }
