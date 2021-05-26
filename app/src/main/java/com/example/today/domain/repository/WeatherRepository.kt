@@ -7,6 +7,6 @@ import com.example.today.util.error.Failure
 import io.reactivex.Observable
 
 interface WeatherRepository {
-    fun getLocations(search: String): Either<Failure, Observable<List<Location>>>
+    fun getLocations(search: String): Observable<List<Location>>
     fun getLocationWeather(id: Long): Observable<LocationWeather>
 }

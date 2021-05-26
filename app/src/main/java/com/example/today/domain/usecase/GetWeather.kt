@@ -17,30 +17,21 @@ package com.example.today.domain.usecase
 
 import com.example.today.domain.model.LocationWeather
 import com.example.today.domain.repository.WeatherRepository
-import com.example.today.util.Either
-import com.example.today.util.error.Failure
-import com.example.today.util.flatMap
-import com.example.today.util.map
+
 import io.reactivex.Observable
 import io.reactivex.Single
 import javax.inject.Inject
 
-class GetWeather
-@Inject constructor(private val weatherRepository: WeatherRepository) :
-    UseCase<Single<List<LocationWeather>>, GetWeather.Params>() {
-
-    override suspend fun run(params: Params): Either<Failure, Single<List<LocationWeather>>> =
-        weatherRepository.getLocations(params.search).map {
-            it.flatMapIterable { it }.concatMap {
-                weatherRepository.getLocationWeather(it.id)
-            }.flatMap {
-                Observable.just(it)
-            }.toList()
-        }
-
-
-    data class Params(val search: String)
-
+class GetWeather @Inject constructor(
+    private val weatherRepository: WeatherRepository
+) {
+    operator fun invoke(search: String): Single<List<LocationWeather>> {
+        return weatherRepository.getLocations(search).flatMapIterable { it }.concatMapEager { location ->
+            weatherRepository.getLocationWeather(location.id)
+        }.flatMap {
+            Observable.just(it)
+        }.toList()
+    }
 }
 
 

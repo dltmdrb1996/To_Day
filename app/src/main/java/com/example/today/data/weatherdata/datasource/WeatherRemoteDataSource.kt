@@ -9,10 +9,9 @@ import io.reactivex.Observable
 import io.reactivex.Scheduler
 import javax.inject.Inject
 
-
 class WeatherRemoteDataSource @Inject constructor(
-private val weatherServiceApi: WeatherServiceApi,
-@IOScheduler private val scheduler: Scheduler
+    private val weatherServiceApi: WeatherServiceApi,
+    @IOScheduler private val scheduler: Scheduler
 ) : WeatherDataSource {
 
     override fun getLocations(search: String): Observable<List<LocationDTO>> {

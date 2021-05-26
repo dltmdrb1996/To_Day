@@ -31,33 +31,32 @@ class FirebaseRepositoryImpl @Inject constructor(
     override suspend fun getMovieData(day: Int): Either<Failure, Movie?> {
 
         return when (networkHandler.isNetworkAvailable()) {
-            true -> Either.Right(db.collection("movie")
+            true -> db.collection("movie")
                 .document(day.toString()).get().await().toMovie()?.let {
-                    movieMapper.transform(it)
-                })
-            false -> Either.Left(Failure.ServerError)
+                    Either.Right(movieMapper.transform(it))
+                } ?: Either.Left(Failure.ServerError)
+            false -> Either.Left(Failure.NetworkConnection)
         }
     }
 
     override suspend fun getEngData(day: Int): Either<Failure, Eng?> {
 
         return when (networkHandler.isNetworkAvailable()) {
-            true -> Either.Right(db.collection("eng")
+            true -> db.collection("eng")
                 .document(day.toString()).get().await().toEng()?.let {
-                    engMapper.transform(it)
-                })
-            false -> Either.Left(Failure.ServerError)
+                    Either.Right(engMapper.transform(it))
+                } ?: Either.Left(Failure.ServerError)
+            false -> Either.Left(Failure.NetworkConnection)
         }
     }
 
     override suspend fun getMusicData(day: Int): Either<Failure, Music?> {
-
         return when (networkHandler.isNetworkAvailable()) {
-            true -> Either.Right(db.collection("music")
+            true -> db.collection("music")
                 .document(day.toString()).get().await().toMusic()?.let {
-                    musicMapper.transform(it)
-                })
-            false -> Either.Left(Failure.ServerError)
+                    Either.Right(musicMapper.transform(it))
+                } ?: Either.Left(Failure.ServerError)
+            false -> Either.Left(Failure.NetworkConnection)
         }
     }
 }

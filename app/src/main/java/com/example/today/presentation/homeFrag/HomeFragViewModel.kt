@@ -21,7 +21,6 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HomeFragViewModel @Inject constructor(
-//    private val searchLocationWeathersUseCase: SearchLocationWeathersUseCase,
     private val getWeather: GetWeather,
     @MainScheduler private val scheduler: Scheduler,
     private val disposable: CompositeDisposable
@@ -40,45 +39,51 @@ class HomeFragViewModel @Inject constructor(
     private val _dataLoading = MutableLiveData<Boolean>()
     val dataLoading: LiveData<Boolean> = _dataLoading
 
-    private val _failure: MutableLiveData<Failure> = MutableLiveData()
-    val failure: LiveData<Failure> = _failure
+    private val _toastTextId = MutableLiveData<Int>()
+    val toastTextId: LiveData<Int>
+        get() = _toastTextId
 
     fun search(search: String) {
         if (_dataLoading.value == true || search == _search.value) {
             return
         }
         _search.value = search
-        _search?.value?.let {loadMovieDetails(it) }
+        getLocationWeathers()
     }
 
     fun refresh() {
         if (_dataLoading.value == true) {
             return
         }
-        _search?.value?.let {loadMovieDetails(it) }
+        getLocationWeathers()
     }
 
-    fun loadMovieDetails(search: String) =
-        viewModelScope.launch {
-            getWeather(GetWeather.Params(search)) {
-                it.fold(::handleFailure, ::getLocationWeathers)
-            }
+    private fun getLocationWeathers() {
+        _search.value?.let { search ->
+            _dataLoading.value = true
+            disposable.add(
+                getWeather(search).observeOn(scheduler).doFinally {
+                    _dataLoading.value = false
+                }.subscribe({
+                    _locationWeathers.value = it
+                }, { error ->
+                    Log.e(TAG, "Failure to get Weather", error)
+                    processError(error)
+                })
+            )
         }
-
-    private fun getLocationWeathers(get : Single<List<LocationWeather>>) {
-        _dataLoading.value = true
-        disposable.add(
-            get.observeOn(scheduler).doFinally {
-                _dataLoading.value = false
-            }.subscribe({
-                _locationWeathers.value = it
-            }, { error ->
-                Log.e(TAG, "Failure to get Weather", error)
-            })
-        )
     }
 
-    private fun handleFailure(failure: Failure) { _failure.value = failure }
+    private fun processError(error: Throwable) {
+        var stringId = R.string.default_error_message
+        when (error) {
+            is HttpRequestFailException ->
+                stringId = R.string.http_requst_fail_error_message
+            is NullResponseBodyException ->
+                stringId = R.string.null_response_body_error_message
+        }
+        _toastTextId.value = stringId
+    }
 
     override fun onCleared() {
         super.onCleared()
