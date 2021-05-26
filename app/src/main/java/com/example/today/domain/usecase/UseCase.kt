@@ -16,5 +16,4 @@ abstract class  UseCase<out Type, in Params> {
         GlobalScope.launch(Dispatchers.Main) { onResult(job.await()) }
     }
 
-    class None
 }

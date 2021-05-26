@@ -10,7 +10,9 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
+import com.example.today.R
 import com.example.today.databinding.FragmentHomeBinding
+import com.example.today.util.error.Failure
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
 
@@ -36,7 +38,7 @@ class HomeFragment() : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        subscribeUI()
+        handleFailure()
         setListener()
         viewModel.search("se")
     }
@@ -47,11 +49,6 @@ class HomeFragment() : Fragment() {
 
     }
 
-    private fun subscribeUI() {
-        viewModel.toastTextId.observe(viewLifecycleOwner) { stringId ->
-            Toast.makeText(activity, getString(stringId), Toast.LENGTH_SHORT).show()
-        }
-    }
 
     private fun setListener(){
         _binding?.apply {
@@ -88,7 +85,21 @@ class HomeFragment() : Fragment() {
     }
 
 
-
+    private fun handleFailure() {
+        viewModel.failure.observe(viewLifecycleOwner,{
+            when (it) {
+                is Failure.NetworkConnection -> {
+                    Toast.makeText(activity, R.string.failure_network_connection, Toast.LENGTH_SHORT).show()
+                }
+                is Failure.ServerError -> {
+                    Toast.makeText(activity, R.string.failure_server_error, Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    Toast.makeText(activity, R.string.default_error_message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+    }
 
 
 }

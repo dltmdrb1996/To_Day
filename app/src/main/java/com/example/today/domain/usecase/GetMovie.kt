@@ -2,8 +2,6 @@ package com.example.today.domain.usecase
 
 import com.example.today.domain.model.Movie
 import com.example.today.domain.repository.FireBaseRepository
-import com.example.today.util.Either
-import com.example.today.util.error.Failure
 import javax.inject.Inject
 
 class GetMovie @Inject constructor(private val fireBaseRepository: FireBaseRepository) :

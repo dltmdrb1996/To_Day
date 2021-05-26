@@ -4,20 +4,25 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.today.R
 import com.example.today.di.MainScheduler
 import com.example.today.domain.model.LocationWeather
-import com.example.today.domain.usecase.SearchLocationWeathersUseCase
+import com.example.today.domain.usecase.GetWeather
+import com.example.today.util.error.Failure
 import com.example.today.util.error.HttpRequestFailException
 import com.example.today.util.error.NullResponseBodyException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.Scheduler
+import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeFragViewModel @Inject constructor(
-    private val searchLocationWeathersUseCase: SearchLocationWeathersUseCase,
+//    private val searchLocationWeathersUseCase: SearchLocationWeathersUseCase,
+    private val getWeather: GetWeather,
     @MainScheduler private val scheduler: Scheduler,
     private val disposable: CompositeDisposable
 ) : ViewModel() {
@@ -35,51 +40,45 @@ class HomeFragViewModel @Inject constructor(
     private val _dataLoading = MutableLiveData<Boolean>()
     val dataLoading: LiveData<Boolean> = _dataLoading
 
-    private val _toastTextId = MutableLiveData<Int>()
-    val toastTextId: LiveData<Int>
-        get() = _toastTextId
+    private val _failure: MutableLiveData<Failure> = MutableLiveData()
+    val failure: LiveData<Failure> = _failure
 
     fun search(search: String) {
         if (_dataLoading.value == true || search == _search.value) {
             return
         }
         _search.value = search
-        getLocationWeathers()
+        _search?.value?.let {loadMovieDetails(it) }
     }
 
     fun refresh() {
         if (_dataLoading.value == true) {
             return
         }
-        getLocationWeathers()
+        _search?.value?.let {loadMovieDetails(it) }
     }
 
-    private fun getLocationWeathers() {
-        _search.value?.let { search ->
-            _dataLoading.value = true
-            disposable.add(
-                searchLocationWeathersUseCase(search).observeOn(scheduler).doFinally {
-                    _dataLoading.value = false
-                }.subscribe({
-                    _locationWeathers.value = it
-                }, { error ->
-                    Log.e(TAG, "Failure to get Weather", error)
-                    processError(error)
-                })
-            )
+    fun loadMovieDetails(search: String) =
+        viewModelScope.launch {
+            getWeather(GetWeather.Params(search)) {
+                it.fold(::handleFailure, ::getLocationWeathers)
+            }
         }
+
+    private fun getLocationWeathers(get : Single<List<LocationWeather>>) {
+        _dataLoading.value = true
+        disposable.add(
+            get.observeOn(scheduler).doFinally {
+                _dataLoading.value = false
+            }.subscribe({
+                _locationWeathers.value = it
+            }, { error ->
+                Log.e(TAG, "Failure to get Weather", error)
+            })
+        )
     }
 
-    private fun processError(error: Throwable) {
-        var stringId = R.string.default_error_message
-        when (error) {
-            is HttpRequestFailException ->
-                stringId = R.string.http_requst_fail_error_message
-            is NullResponseBodyException ->
-                stringId = R.string.null_response_body_error_message
-        }
-        _toastTextId.value = stringId
-    }
+    private fun handleFailure(failure: Failure) { _failure.value = failure }
 
     override fun onCleared() {
         super.onCleared()

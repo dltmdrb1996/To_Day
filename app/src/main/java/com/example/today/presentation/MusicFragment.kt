@@ -4,11 +4,13 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.annotation.NonNull
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.bumptech.glide.Glide
+import com.example.today.R
 import com.example.today.databinding.FragmentMusicBinding
+import com.example.today.util.error.Failure
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.YouTubePlayer
 import com.pierfrancescosoffritti.androidyoutubeplayer.core.player.listeners.AbstractYouTubePlayerListener
 import dagger.hilt.android.AndroidEntryPoint
@@ -27,14 +29,40 @@ class MusicFragment : Fragment() {
             lifecycleOwner = viewLifecycleOwner
             viewModel = this@MusicFragment.viewModel
         }
-
+        handleFailure()
         viewModel.loadMusicDetails(1)
+
         val view = binding.root
         return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setYoutube()
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
+    }
+
+    private fun handleFailure() {
+        viewModel.failure.observe(viewLifecycleOwner,{
+            when (it) {
+                is Failure.NetworkConnection -> {
+                    Toast.makeText(activity, R.string.failure_network_connection, Toast.LENGTH_SHORT).show()
+                }
+                is Failure.ServerError -> {
+                    Toast.makeText(activity, R.string.failure_server_error, Toast.LENGTH_SHORT).show()
+                }
+                else -> {
+                    Toast.makeText(activity, R.string.default_error_message, Toast.LENGTH_SHORT).show()
+                }
+            }
+        })
+    }
+
+    private fun setYoutube(){
         viewModel.music.observe(viewLifecycleOwner,{
             binding.youtubePlayerView.addYouTubePlayerListener(object :
                 AbstractYouTubePlayerListener() {
@@ -44,11 +72,5 @@ class MusicFragment : Fragment() {
                 }
             })
         })
-    }
-
-    override fun onDestroyView() {
-        getContext()?.let { Glide.get(it).clearMemory() }
-        _binding = null
-        super.onDestroyView()
     }
 }

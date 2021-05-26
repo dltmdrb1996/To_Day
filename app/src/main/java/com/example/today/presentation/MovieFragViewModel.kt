@@ -20,18 +20,21 @@ class MovieFragViewModel @Inject constructor(
     private val _movie = MutableLiveData<Movie>()
     val movie: LiveData<Movie> = _movie
 
-
+    private val _failure: MutableLiveData<Failure> = MutableLiveData()
+    val failure: LiveData<Failure> = _failure
 
     fun insert(title : String) {
             viewModelScope.launch {
                 roomDataUseCase.insert(title)
             }
     }
-    private val _failure: MutableLiveData<Failure> = MutableLiveData()
-    val failure: LiveData<Failure> = _failure
 
     fun loadMovieDetails(day: Int) =
-        getMovie(GetMovie.Params(day)) { it.fold(::handleFailure, ::handleMovieDetails) }
+        viewModelScope.launch {
+            getMovie(GetMovie.Params(day)) {
+                it.fold(::handleFailure, ::handleMovieDetails)
+            }
+        }
 
     private fun handleMovieDetails(movie: Movie?) {
         _movie.value = movie?.apply { Movie(title, director, img, actor, script, story, time) }
