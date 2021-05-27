@@ -2,7 +2,7 @@
 
 
 ### 사용기술
-Hilt , Firestore , Room , MVVM , LiveData , Coroutine , Rx , Navigation , retorfit2 , glide , viewPager2 
+Hilt , Firestore , Room , MVVM , LiveData , Coroutine , Rx , Navigation , retorfit2 , glide , viewPager2 , Either Monad
 
 
 ### 도메인 중심 아키텍쳐
