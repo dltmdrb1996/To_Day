@@ -2,7 +2,7 @@
 ### 아키텍쳐와 다양한 기술들을 학습하기위한 프로젝트입니다.
 
 ### 사용기술
-Hilt , Firestore , Room , MVVM , LiveData , Coroutine , Rx , retorfit2 , glide , viewPager2 , EitherMonad , 
+Hilt , Firestore , Room , MVVM , LiveData , Coroutine , Rx , retorfit2 , glide , viewPager2 , EitherMonad , DataBinding , WeatherAPI
 
 
 ### 도메인 중심 아키텍쳐
