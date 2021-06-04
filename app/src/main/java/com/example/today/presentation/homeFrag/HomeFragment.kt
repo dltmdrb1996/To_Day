@@ -1,53 +1,63 @@
 package com.example.today.presentation.homeFrag
 
 
+import android.animation.Animator
+import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AccelerateDecelerateInterpolator
 import android.widget.Toast
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.navigation.NavController
-import androidx.navigation.Navigation
-import androidx.navigation.findNavController
-import androidx.navigation.fragment.findNavController
-import com.example.today.R
-import com.example.today.data.db.datasource.LocalDataSource
-import com.example.today.data.db.model.Movie
 import com.example.today.databinding.FragmentHomeBinding
+import com.yy.mobile.rollingtextview.CharOrder.Alphabet
+import com.yy.mobile.rollingtextview.RollingTextView
+import com.yy.mobile.rollingtextview.strategy.Strategy
 import dagger.hilt.android.AndroidEntryPoint
+import java.util.*
+
 
 @AndroidEntryPoint
 class HomeFragment() : Fragment() {
 
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
     private val viewModel by viewModels<HomeFragViewModel>()
     private val adapter = WeatherInfoAdapter()
-    lateinit var binding : FragmentHomeBinding
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        binding = FragmentHomeBinding.inflate(inflater, container, false)
-        binding.apply {
-            lifecycleOwner = this@HomeFragment
+        _binding = FragmentHomeBinding.inflate(inflater, container, false)
+        _binding?.apply {
+            lifecycleOwner = viewLifecycleOwner
             viewModel = this@HomeFragment.viewModel
             adapter = this@HomeFragment.adapter
         }
-
         subscribeUI()
-
-        viewModel.search("se")
+        viewModel.time.observe(viewLifecycleOwner, {
+            binding.clock.setTime(it.get(GregorianCalendar.HOUR), it.get(GregorianCalendar.MINUTE), it.get(GregorianCalendar.SECOND))
+        })
         return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding.HomeFragBtnMovie.setOnClickListener {
-            view.findNavController().navigate(R.id.movieFragment)
-        }
+//        setListener()
+        viewModel.search("se")
+        viewModel.getTime()
+        binding.alphaBetView.animationDuration = 3000L
+        binding.alphaBetView.charStrategy = Strategy.NormalAnimation()
+        binding.alphaBetView.animationInterpolator = AccelerateDecelerateInterpolator()
+        binding.alphaBetView.setText("좌우로 스크롤해주세요")
+    }
+
+    override fun onDestroyView() {
+        _binding = null
+        super.onDestroyView()
+
     }
 
     private fun subscribeUI() {
@@ -57,3 +67,4 @@ class HomeFragment() : Fragment() {
     }
 
 }
+

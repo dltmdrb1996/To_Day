@@ -1,10 +1,15 @@
 package com.example.today.di
 
+import android.content.Context
+import androidx.room.Room
 import com.example.today.BuildConfig
-import com.example.today.data.api.network.WeatherServiceApi
+import com.example.today.data.db.room.SaveDatabase
+import com.example.today.data.weatherdata.network.WeatherServiceApi
+import com.example.today.util.NetworkHandler
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import okhttp3.OkHttpClient
 import retrofit2.Retrofit
@@ -36,6 +41,13 @@ class NetworkModule {
     @Provides
     fun provideWeatherServiceApi(retrofit: Retrofit): WeatherServiceApi {
         return retrofit.create(WeatherServiceApi::class.java)
+    }
+
+
+    @Singleton
+    @Provides
+    fun providesNetworkHandler(@ApplicationContext context: Context): NetworkHandler {
+        return NetworkHandler(context)
     }
 
 }

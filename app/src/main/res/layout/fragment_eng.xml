@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".presentation.EngFragment">
+
+    <data>
+
+        <variable
+            name="viewModel"
+            type="com.example.today.presentation.EngFragViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/black">
+
+        <ImageView
+            android:id="@+id/appCompatImageView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:alpha=".50"
+            android:scaleType="fitCenter"
+            tools:layout_editor_absoluteX="-32dp"
+            tools:layout_editor_absoluteY="-150dp" />
+
+        <TextView
+            android:id="@+id/eng_Frag_Tv_Eng"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@{viewModel.eng.eng}"
+            android:textAlignment="center"
+            android:textColor="@color/GhostWhite"
+            android:textSize="30sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView"
+            app:layout_constraintEnd_toEndOf="@+id/appCompatImageView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/eng_Frag_Tv_Kor"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@{viewModel.eng.kor}"
+            android:textAlignment="center"
+            android:textColor="@color/GhostWhite"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/appCompatImageView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/eng_Frag_Tv_Eng" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="15dp"
+            android:fontFamily="sans-serif-light"
+            android:text="@{viewModel.eng.person}"
+            android:textAlignment="center"
+            android:textColor="@color/GhostWhite"
+            android:textSize="15sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="@+id/appCompatImageView"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/eng_Frag_Tv_Kor" />
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/Home_Frag_Btn_Save"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="25dp"
+            android:backgroundTint="@color/LightGoldenrodYellow"
+            android:onClick="@{()->viewModel.insert(viewModel.eng.eng)}"
+            android:text="저장하기"
+            android:textColor="@color/black"
+            app:cornerRadius="50dp"
+            app:icon="@drawable/ic_baseline_save_24"
+            app:iconGravity="top"
+            app:iconSize="50dp"
+            app:iconTint="@color/holo_green_dark"
+            app:layout_constraintBottom_toBottomOf="@+id/appCompatImageView"
+            app:layout_constraintStart_toStartOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -4,7 +4,13 @@
     <string name="temp">%.1f°C</string>
     <string name="humidity">%d%%</string>
 
-    <string name="default_error_message">An error has occurred.</string>
-    <string name="http_requst_fail_error_message">Please try again in a few minutes.</string>
-    <string name="null_response_body_error_message">request has failed.</string>
+    <string name="default_error_message">에러발생</string>
+    <string name="http_requst_fail_error_message">잠시후 다시시도하세요</string>
+    <string name="null_response_body_error_message">응답실패</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="failure_network_connection">No Network Connection.</string>
+    <string name="failure_server_error">Server Error</string>
+
 </resources>

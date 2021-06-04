@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
-
         <variable
             name="viewModel"
             type="com.example.today.presentation.homeFrag.HomeFragViewModel" />
@@ -12,88 +11,110 @@
         <variable
             name="adapter"
             type="com.example.today.presentation.homeFrag.WeatherInfoAdapter" />
+
     </data>
 
-    <LinearLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/linearLayout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/WhiteSmoke"
         android:orientation="vertical"
-        android:weightSum="1"
         tools:context=".presentation.homeFrag.HomeFragment">
 
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/ic_baseline_arrow_right_24"
+            app:layout_constraintBottom_toTopOf="@+id/layout2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="10dp"
+            android:src="@drawable/ic_baseline_arrow_left_24"
+            app:layout_constraintBottom_toTopOf="@+id/layout2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <com.example.today.presentation.homeFrag.CustomSwipeRefreshLayout
+            android:id="@+id/layout1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_margin="15dp"
-            android:layout_weight="0.15"
+            android:layout_margin="25dp"
+            app:layout_constraintBottom_toTopOf="@id/layout2"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_weight="15"
             app:onRefreshListener="@{() -> viewModel.refresh()}"
-            app:refreshing="@{viewModel.dataLoading}">
+            app:refreshing="@{viewModel.dataLoading}"
+            tools:layout_editor_absoluteX="3dp">
 
             <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/Home_Frag_ViewPager"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_gravity="center"
                 app:adapter="@{adapter}"
-                app:adapterWeatherInfoList="@{viewModel.locationWeathers}"
+                app:adapterViewPager="@{viewModel.locationWeathers}"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />>
 
         </com.example.today.presentation.homeFrag.CustomSwipeRefreshLayout>
 
         <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/layout2"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_weight="0.85">
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/layout1"
+            app:layout_constraintVertical_weight="85">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/Home_Frag_Btn_Movie"
+            <TextView
+                android:id="@+id/textView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/LightGoldenrodYellow"
-                android:text="영화"
-                android:textColor="@color/black"
-                app:cornerRadius="15dp"
-                app:icon="@drawable/ic_baseline_movie_24"
-                app:iconGravity="top"
-                app:iconTint="@color/holo_green_dark"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/Home_frag_Btn_Music"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/Home_frag_Btn_Music"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:backgroundTint="@color/LightGoldenrodYellow"
-                android:text="음악"
-                android:textColor="@color/black"
-                app:cornerRadius="15dp"
-                app:icon="@drawable/ic_baseline_music_note_24"
-                app:iconGravity="top"
-                app:iconTint="@color/holo_green_dark"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:fontFamily="sans-serif-black"
+                android:text="To Day"
+                android:textColor="@color/LightSlateGray"
+                android:textSize="80sp"
+                android:textStyle="italic"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/Home_Frag_Btn_Eng"
+            <com.yy.mobile.rollingtextview.RollingTextView
+                android:layout_marginTop="40dp"
+                android:id="@+id/alphaBetView"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/LightGoldenrodYellow"
-                android:text="영어"
-                android:textColor="@color/black"
-                app:cornerRadius="15dp"
-                app:icon="@drawable/ic_baseline_school_24"
-                app:iconGravity="top"
-                app:iconTint="@color/holo_green_dark"
-                app:layout_constraintBottom_toBottomOf="parent"
+                android:gravity="center"
+                android:shadowColor="@color/LightSlateGray"
+                android:shadowDx="5"
+                android:shadowDy="5"
+                android:shadowRadius="10"
+                android:text="하루하루 정보를 제공"
+                android:textColor="#1d1d1d"
+                android:textSize="35sp"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/Home_frag_Btn_Music"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView" />
+
+            <com.leondzn.simpleanalogclock.SimpleAnalogClock
+                android:id="@+id/clock"
+                android:layout_width="200dp"
+                android:layout_height="200dp"
+                android:layout_margin="25dp"
+                app:hourTint="@color/colorPrimary"
+                app:minuteTint="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/alphaBetView"
+                app:secondTint="@color/colorAccent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
-
-    </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -4,26 +4,19 @@ import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
-import androidx.viewpager.widget.PagerAdapter
-import androidx.viewpager2.widget.ViewPager2
 import com.example.today.databinding.AdapterListBinding
 import com.example.today.domain.model.LocationWeather
 
 
 class WeatherInfoAdapter : RecyclerView.Adapter<WeatherInfoAdapter.WeatherInfoViewHolder>() {
-
-    private var items: List<weatherInfoItem> = emptyList()
+    private val items: ArrayList<LocationWeather> = arrayListOf()
 
     fun addHeaderAndSumbitList(list: List<LocationWeather>) {
-        val itemList: MutableList<weatherInfoItem> = mutableListOf()
-
-        if (!list.isEmpty()) {
-            for (i in list) {
-                itemList.add(weatherInfoItem(i))
-            }
-        }
-        this.items = itemList
-        notifyDataSetChanged()
+        val diffCallback = DiffUtilCallback(items, list)
+        val diffResult = DiffUtil.calculateDiff(diffCallback)
+        items.clear()
+        items.addAll(list)
+        diffResult.dispatchUpdatesTo(this)
     }
 
     class WeatherInfoViewHolder constructor(val binding: AdapterListBinding) :
@@ -51,7 +44,7 @@ class WeatherInfoAdapter : RecyclerView.Adapter<WeatherInfoAdapter.WeatherInfoVi
 
 
     override fun getItemCount(): Int {
-        return if (items.size > 0) {
+        return return if (items.size > 0) {
             Int.MAX_VALUE
         } else {
             0
@@ -59,15 +52,48 @@ class WeatherInfoAdapter : RecyclerView.Adapter<WeatherInfoAdapter.WeatherInfoVi
     }
 
 
-    data class weatherInfoItem(val locationWeather: LocationWeather)
-
-
     override fun onBindViewHolder(holder: WeatherInfoViewHolder, position: Int) {
 
-        val weatherInfoItem = items[position % items.count()]
-        holder.bind(weatherInfoItem.locationWeather)
+        val locationWeather = items[position%items.count()]
+        holder.bind(locationWeather)
 
     }
 
 }
 
+
+
+private class DiffUtilCallback(
+    private val oldItems: List<LocationWeather>,
+    private val newItems: List<LocationWeather>
+) : DiffUtil.Callback() {
+
+
+    override fun getOldListSize(): Int =
+        oldItems.size
+
+    override fun getNewListSize(): Int =
+        newItems.size
+
+
+    override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        val oldItem = oldItems[oldItemPosition]
+        val newItem = newItems[newItemPosition]
+        return oldItem.locationId == newItem.locationId && oldItem.weathers == newItem.weathers
+    }
+
+
+    override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
+        val oldItem = oldItems[oldItemPosition]
+        val newItem = newItems[newItemPosition]
+
+        return oldItem == newItem
+    }
+
+    enum class PayloadKey {
+        VALUE
+    }
+    override fun getChangePayload(oldItemPosition: Int, newItemPosition: Int): Any? {
+        return listOf(PayloadKey.VALUE)
+    }
+}

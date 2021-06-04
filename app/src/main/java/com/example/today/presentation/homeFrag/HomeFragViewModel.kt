@@ -4,20 +4,27 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
 import com.example.today.R
 import com.example.today.di.MainScheduler
 import com.example.today.domain.model.LocationWeather
-import com.example.today.domain.usecase.SearchLocationWeathersUseCase
+import com.example.today.domain.usecase.GetWeather
+import com.example.today.util.error.Failure
 import com.example.today.util.error.HttpRequestFailException
 import com.example.today.util.error.NullResponseBodyException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.Scheduler
+import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
+import kotlinx.coroutines.launch
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.util.*
 import javax.inject.Inject
 
 @HiltViewModel
 class HomeFragViewModel @Inject constructor(
-    private val searchLocationWeathersUseCase: SearchLocationWeathersUseCase,
+    private val getWeather: GetWeather,
     @MainScheduler private val scheduler: Scheduler,
     private val disposable: CompositeDisposable
 ) : ViewModel() {
@@ -39,6 +46,9 @@ class HomeFragViewModel @Inject constructor(
     val toastTextId: LiveData<Int>
         get() = _toastTextId
 
+    private val _time = MutableLiveData<GregorianCalendar>()
+    val time: LiveData<GregorianCalendar>
+        get() = _time
 
     fun search(search: String) {
         if (_dataLoading.value == true || search == _search.value) {
@@ -59,7 +69,7 @@ class HomeFragViewModel @Inject constructor(
         _search.value?.let { search ->
             _dataLoading.value = true
             disposable.add(
-                searchLocationWeathersUseCase(search).observeOn(scheduler).doFinally {
+                getWeather(search).observeOn(scheduler).doFinally {
                     _dataLoading.value = false
                 }.subscribe({
                     _locationWeathers.value = it
@@ -82,8 +92,14 @@ class HomeFragViewModel @Inject constructor(
         _toastTextId.value = stringId
     }
 
+    fun getTime(){
+        val tz = TimeZone.getTimeZone("Asia/Seoul")
+        val gc = GregorianCalendar(tz)
+        _time.value = gc
+    }
     override fun onCleared() {
         super.onCleared()
         disposable.clear()
     }
 }
+
