@@ -10,7 +10,6 @@ import javax.inject.Inject
 class RoomDataUseCase @Inject constructor(
     private val saveRepository: SaveRepository,
     private val ioDispatcher: CoroutineDispatcher
-
     ) {
     fun getAll() : LiveData<List<Save>>{
         return saveRepository.getAll()
