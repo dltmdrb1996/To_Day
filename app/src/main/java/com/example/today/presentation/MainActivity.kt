@@ -2,10 +2,7 @@ package com.example.today.presentation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.databinding.DataBindingUtil
-import androidx.fragment.app.Fragment
-import androidx.navigation.Navigation
 import com.example.today.R
 import com.example.today.databinding.ActivityMainBinding
 import com.example.today.presentation.homeFrag.HomeFragment
@@ -37,7 +34,8 @@ class MainActivity : AppCompatActivity() {
         binding.tabLayout.setBackgroundExpanded(R.drawable.tab_gradient_expanded)
 
         binding.tabLayout.smallCenterButton.setImageResource(R.drawable.ic_baseline_home_24)
-        binding.tabLayout.largeCenterButton.setImageResource(R.drawable.shadow_ring)
+        binding.tabLayout.smallCenterButton.setColorFilter(R.color.black)
+        binding.tabLayout.largeCenterButton.setImageResource(R.drawable.ring)
         binding.tabLayout.startButton.setImageResource(R.drawable.ic_baseline_movie_24)
         binding.tabLayout.endButton.setImageResource(R.drawable.ic_baseline_save_24)
         binding.tabLayout.midStart.setImageResource(R.drawable.ic_baseline_music_note_24)
