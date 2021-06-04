@@ -1,8 +1,8 @@
 ### 하루마다 새로운 정보를 보여줍니다 //DB정보 작성이 안된 상태
-
+### 아키텍쳐와 다양한 기술들을 학습하기위한 프로젝트입니다.
 
 ### 사용기술
-Hilt , Firestore , Room , MVVM , LiveData , Coroutine , Rx , Navigation , retorfit2 , glide , viewPager2 , Either Monad
+Hilt , Firestore , Room , MVVM , LiveData , Coroutine , Rx , retorfit2 , glide , viewPager2 , EitherMonad , 
 
 
 ### 도메인 중심 아키텍쳐
@@ -10,5 +10,7 @@ Hilt , Firestore , Room , MVVM , LiveData , Coroutine , Rx , Navigation , retorf
 
 ### 기록
 1. 모든 앱의 핵심이 되는 부분인 도메인부분이 다른 영역의 의존성을 갖지 않도록 설계하였습니다.
-2. 학습을 위해 Monad , Rx , Coroutine 3가지종류로 데이터를 불러왔습니다.
+2. 학습을 위해 Monad , Rx  2가지종류로 데이터를 불러왔습니다.
 3. 패키지는 1차적으로 클린 아키텍쳐의 계층구조에 따라 분리하고 2차로 기능별로 분리하였습니다.
+4. databinding과 glide 사용등으로 발생할수있는 Memory Leak을 방지하였습니다.
+5. 다양한 UI 라이브러리를 사용하였습니다.
