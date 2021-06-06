@@ -15,5 +15,6 @@ Hilt , Firestore , Room , MVVM , LiveData , Coroutine , Rx , retorfit2 , glide ,
 4. databinding과 glide 사용등으로 발생할수있는 Memory Leak을 방지하였습니다.
 5. 다양한 UI 라이브러리를 사용하였습니다.
 
+***
 
-![ezgif-6-3e24df8f3392](https://user-images.githubusercontent.com/65164183/120931628-6791db80-c72d-11eb-81cc-4461b6eb8fee.gif)
+![ezgif-6-3e24df8f3392](https://user-images.githubusercontent.com/65164183/120931628-6791db80-c72d-11eb-81cc-4461b6eb8fee.gif){: width="20%" height="20%"}
