@@ -1,3 +1,7 @@
+.center {
+  display: block;
+  margin: auto;
+}
 ### 하루마다 새로운 정보를 보여줍니다 //DB정보 작성이 안된 상태
 ### 아키텍쳐와 다양한 기술들을 학습하기위한 프로젝트입니다.
 
@@ -17,4 +21,4 @@ Hilt , Firestore , Room , MVVM , LiveData , Coroutine , Rx , retorfit2 , glide ,
 
 ***
 
-![ezgif-6-3e24df8f3392](https://user-images.githubusercontent.com/65164183/120931628-6791db80-c72d-11eb-81cc-4461b6eb8fee.gif){: width="50" height="50"}
+![ezgif-6-3e24df8f3392](https://user-images.githubusercontent.com/65164183/120931628-6791db80-c72d-11eb-81cc-4461b6eb8fee.gif){: width="300" height="300"){: .center}
