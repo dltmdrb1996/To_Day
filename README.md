@@ -17,4 +17,4 @@ Hilt , Firestore , Room , MVVM , LiveData , Coroutine , Rx , retorfit2 , glide ,
 
 ***
 
-![ezgif-6-3e24df8f3392](https://user-images.githubusercontent.com/65164183/120931628-6791db80-c72d-11eb-81cc-4461b6eb8fee.gif){: width="20%" height="20%"}
+![ezgif-6-3e24df8f3392](https://user-images.githubusercontent.com/65164183/120931628-6791db80-c72d-11eb-81cc-4461b6eb8fee.gif){: width="50" height="50"}
