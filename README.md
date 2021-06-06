@@ -10,7 +10,7 @@ Hilt , Firestore , Room , MVVM , LiveData , Coroutine , Rx , retorfit2 , glide ,
 
 ### 기록
 1. 모든 앱의 핵심이 되는 부분인 도메인부분이 다른 영역의 의존성을 갖지 않도록 설계하였습니다.
-2. 학습을 위해 Monad , Rx  2가지종류로 데이터를 불러왔습니다.
+2. 학습을 위해 Monad-coroutine , Rx  2가지종류로 데이터를 불러왔습니다.
 3. 패키지는 1차적으로 클린 아키텍쳐의 계층구조에 따라 분리하고 2차로 기능별로 분리하였습니다.
 4. databinding과 glide 사용등으로 발생할수있는 Memory Leak을 방지하였습니다.
 5. 다양한 UI 라이브러리를 사용하였습니다.
