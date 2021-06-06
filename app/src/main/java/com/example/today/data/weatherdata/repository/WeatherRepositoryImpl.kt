@@ -3,19 +3,10 @@ package com.example.today.data.weatherdata.repository
 import com.example.today.data.mapper.LocationMapper
 import com.example.today.data.mapper.LocationWeatherMapper
 import com.example.today.data.weatherdata.datasource.WeatherDataSource
-import com.example.today.data.weatherdata.network.WeatherServiceApi
-import com.example.today.di.IOScheduler
 import com.example.today.domain.model.Location
 import com.example.today.domain.model.LocationWeather
 import com.example.today.domain.repository.WeatherRepository
-import com.example.today.util.Either
-import com.example.today.util.NetworkHandler
-import com.example.today.util.error.Failure
-import com.example.today.util.error.HttpRequestFailException
-import com.example.today.util.error.NullResponseBodyException
 import io.reactivex.Observable
-import io.reactivex.Scheduler
-import retrofit2.Call
 import javax.inject.Inject
 
 class WeatherRepositoryImpl @Inject constructor(

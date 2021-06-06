@@ -38,14 +38,16 @@ class EngFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setImg()
     }
+
     override fun onDestroyView() {
         this.context?.let { Glide.get(it).clearMemory() };
         _binding = null
         super.onDestroyView()
     }
 
-    private fun setImg(){
-        viewModel.eng.observe(viewLifecycleOwner,{
+
+    private fun setImg() {
+        viewModel.eng.observe(viewLifecycleOwner, {
             if (!it.img.isNullOrEmpty()) {
                 this.context?.let { it1 ->
                     Glide.with(it1)
@@ -53,22 +55,27 @@ class EngFragment : Fragment() {
                         .thumbnail(0.5f)
                         .into(binding.appCompatImageView)
                 }
-
             }
         })
     }
 
     private fun handleFailure() {
-        viewModel.failure.observe(viewLifecycleOwner,{
+        viewModel.failure.observe(viewLifecycleOwner, {
             when (it) {
                 is Failure.NetworkConnection -> {
-                    Toast.makeText(activity, R.string.failure_network_connection, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(
+                        activity,
+                        R.string.failure_network_connection,
+                        Toast.LENGTH_SHORT
+                    ).show()
                 }
                 is Failure.ServerError -> {
-                    Toast.makeText(activity, R.string.failure_server_error, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, R.string.failure_server_error, Toast.LENGTH_SHORT)
+                        .show()
                 }
                 else -> {
-                    Toast.makeText(activity, R.string.default_error_message, Toast.LENGTH_SHORT).show()
+                    Toast.makeText(activity, R.string.default_error_message, Toast.LENGTH_SHORT)
+                        .show()
                 }
             }
         })

@@ -1,8 +1,6 @@
 package com.example.today.presentation.homeFrag
 
 
-import android.animation.Animator
-import android.animation.AnimatorListenerAdapter
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -12,8 +10,6 @@ import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import com.example.today.databinding.FragmentHomeBinding
-import com.yy.mobile.rollingtextview.CharOrder.Alphabet
-import com.yy.mobile.rollingtextview.RollingTextView
 import com.yy.mobile.rollingtextview.strategy.Strategy
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.*
@@ -48,10 +44,7 @@ class HomeFragment() : Fragment() {
 //        setListener()
         viewModel.search("se")
         viewModel.getTime()
-        binding.alphaBetView.animationDuration = 3000L
-        binding.alphaBetView.charStrategy = Strategy.NormalAnimation()
-        binding.alphaBetView.animationInterpolator = AccelerateDecelerateInterpolator()
-        binding.alphaBetView.setText("좌우로 스크롤해주세요")
+        setRollText()
     }
 
     override fun onDestroyView() {
@@ -66,5 +59,11 @@ class HomeFragment() : Fragment() {
         }
     }
 
+    private fun setRollText(){
+        binding.alphaBetView.animationDuration = 3000L
+        binding.alphaBetView.charStrategy = Strategy.NormalAnimation()
+        binding.alphaBetView.animationInterpolator = AccelerateDecelerateInterpolator()
+        binding.alphaBetView.setText("좌우로 스크롤해주세요")
+    }
 }
 

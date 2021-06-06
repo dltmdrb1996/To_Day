@@ -29,7 +29,6 @@ class FirebaseRepositoryImpl @Inject constructor(
 ) : FireBaseRepository {
 
     override suspend fun getMovieData(day: Int): Either<Failure, Movie?> {
-
         return when (networkHandler.isNetworkAvailable()) {
             true -> db.collection("movie")
                 .document(day.toString()).get().await().toMovie()?.let {

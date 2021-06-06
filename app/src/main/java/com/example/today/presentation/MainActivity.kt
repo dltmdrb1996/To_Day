@@ -20,8 +20,8 @@ class MainActivity : AppCompatActivity() {
             this,
             R.layout.activity_main
         )
-        viewPagerAdapter.addFragment(MovieFragment())
         viewPagerAdapter.addFragment(MusicFragment())
+        viewPagerAdapter.addFragment(MovieFragment())
         viewPagerAdapter.addFragment(HomeFragment())
         viewPagerAdapter.addFragment(EngFragment())
         viewPagerAdapter.addFragment(SaveFragment())

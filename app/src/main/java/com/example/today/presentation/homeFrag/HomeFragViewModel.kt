@@ -4,21 +4,15 @@ import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.today.R
 import com.example.today.di.MainScheduler
 import com.example.today.domain.model.LocationWeather
 import com.example.today.domain.usecase.GetWeather
-import com.example.today.util.error.Failure
 import com.example.today.util.error.HttpRequestFailException
 import com.example.today.util.error.NullResponseBodyException
 import dagger.hilt.android.lifecycle.HiltViewModel
 import io.reactivex.Scheduler
-import io.reactivex.Single
 import io.reactivex.disposables.CompositeDisposable
-import kotlinx.coroutines.launch
-import java.time.LocalDate
-import java.time.LocalDateTime
 import java.util.*
 import javax.inject.Inject
 
