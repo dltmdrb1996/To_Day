@@ -2,9 +2,7 @@ package com.example.today.presentation
 
 import java.util.*
 
-/**
- * Created by Depression on 10-08-2018.
- */
+
 class ViewPagerAdapter(fm: androidx.fragment.app.FragmentManager) : androidx.fragment.app.FragmentPagerAdapter(fm) {
 
     private val mFragmentList = ArrayList<androidx.fragment.app.Fragment>()
@@ -30,7 +28,4 @@ class ViewPagerAdapter(fm: androidx.fragment.app.FragmentManager) : androidx.fra
         notifyDataSetChanged()
     }
 
-    companion object {
-        private val TAG = "ViewPagerAdapter"
-    }
 }
